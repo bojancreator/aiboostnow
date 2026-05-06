@@ -23,4 +23,3 @@
   | `SSH_HOST` | `109.199.99.205` |
   | `SSH_USER` | `lazarenet` |
   | `SSH_DEPLOY_PATH` | `/home/lazarenet/public_html/aiboostnow` |
-  
