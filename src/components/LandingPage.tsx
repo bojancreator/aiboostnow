@@ -1,12 +1,16 @@
 import logoSrc from '../assets/logo.png'
 import videoSrc from '../assets/hero-video.mp4'
 
-const PURPLE = '#7B4FFF'
+const GUMROAD = {
+  starter:   'https://aiboostnow.gumroad.com/l/joomlaboost-starter',
+  developer: 'https://aiboostnow.gumroad.com/l/joomlaboost',
+  agency:    'https://aiboostnow.gumroad.com/l/joomlaboost-agency',
+}
 
 const plans = [
-  { name: 'Starter',   price: '€59',  sites: '1 site',          badge: null,           highlight: false, support: 'Email support' },
-  { name: 'Developer', price: '€119', sites: '5 sites',         badge: 'Most Popular', highlight: true,  support: 'Priority email support' },
-  { name: 'Agency',    price: '€199', sites: 'Unlimited sites',  badge: null,           highlight: false, support: 'Priority email support' },
+  { name: 'Starter',   price: '€59',  sites: '1 site',          badge: null,           highlight: false, support: 'Email support',          url: GUMROAD.starter },
+  { name: 'Developer', price: '€119', sites: '5 sites',         badge: 'Most Popular', highlight: true,  support: 'Priority email support', url: GUMROAD.developer },
+  { name: 'Agency',    price: '€199', sites: 'Unlimited sites',  badge: null,           highlight: false, support: 'Priority email support', url: GUMROAD.agency },
 ]
 
 const feats = [
@@ -39,7 +43,7 @@ const faqs = [
   { q: 'Can I upgrade my license later?',            a: 'Yes. Contact support@aiboostnow.com and we will arrange an upgrade at the price difference.' },
 ]
 
-const BUY_URL = 'https://aiboostnow.gumroad.com/l/joomla'
+const PURPLE = '#7B4FFF'
 
 export function LandingPage() {
   return (
@@ -49,10 +53,10 @@ export function LandingPage() {
       <nav style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 64px', height: '88px', borderBottom: '1px solid #E8E4F4', position: 'sticky', top: 0, background: '#FFFFFF', zIndex: 100 }}>
         <img src={logoSrc} style={{ height: 68, width: 'auto', display: 'block' }} alt="AI Boost" />
         <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
-          {['Features', 'Docs', 'Pricing'].map(l => (
-            <a key={l} href={`#${l.toLowerCase()}`} style={{ color: '#5A5A7A', fontSize: 15, fontWeight: 500, textDecoration: 'none' }}>{l}</a>
-          ))}
-          <a href={BUY_URL} target="_blank" rel="noopener noreferrer" style={{ background: PURPLE, color: '#fff', fontSize: 14, fontWeight: 600, padding: '11px 22px', borderRadius: 8, textDecoration: 'none' }}>Get AI Boost →</a>
+          <a href="#features" style={{ color: '#5A5A7A', fontSize: 15, fontWeight: 500, textDecoration: 'none' }}>Features</a>
+          <a href="#docs"     style={{ color: '#5A5A7A', fontSize: 15, fontWeight: 500, textDecoration: 'none' }}>Docs</a>
+          <a href="#pricing"  style={{ color: '#5A5A7A', fontSize: 15, fontWeight: 500, textDecoration: 'none' }}>Pricing</a>
+          <a href={GUMROAD.developer} target="_blank" rel="noopener noreferrer" style={{ background: PURPLE, color: '#fff', fontSize: 14, fontWeight: 600, padding: '11px 22px', borderRadius: 8, textDecoration: 'none' }}>Get AI Boost →</a>
         </div>
       </nav>
 
@@ -71,7 +75,7 @@ export function LandingPage() {
             AI Boost for Joomla generates Schema.org, XML sitemap, llms.txt, and AI crawler signals — so ChatGPT, Perplexity, and Google AI Overview recommend your site. Install in 5 minutes. No coding.
           </p>
           <div style={{ display: 'flex', gap: 14, marginBottom: 44 }}>
-            <a href={BUY_URL} target="_blank" rel="noopener noreferrer" style={{ background: PURPLE, color: '#fff', fontSize: 16, fontWeight: 700, padding: '15px 28px', borderRadius: 10, textDecoration: 'none', boxShadow: '0 4px 20px rgba(123,79,255,0.3)' }}>
+            <a href={GUMROAD.developer} target="_blank" rel="noopener noreferrer" style={{ background: PURPLE, color: '#fff', fontSize: 16, fontWeight: 700, padding: '15px 28px', borderRadius: 10, textDecoration: 'none', boxShadow: '0 4px 20px rgba(123,79,255,0.3)' }}>
               Buy Developer — €119
             </a>
             <a href="#features" style={{ background: 'transparent', border: '1.5px solid #D4C9FF', color: '#5A5A7A', fontSize: 16, fontWeight: 600, padding: '15px 24px', borderRadius: 10, textDecoration: 'none' }}>
@@ -88,7 +92,6 @@ export function LandingPage() {
             ))}
           </div>
         </div>
-
         <div style={{ flex: 1 }}>
           <div style={{ background: '#F8F7FF', borderRadius: 16, border: '1.5px solid #E8E4F4', overflow: 'hidden', boxShadow: '0 24px 64px rgba(123,79,255,0.15), 0 4px 16px rgba(0,0,0,0.08)' }}>
             <div style={{ background: '#F0ECF8', padding: '10px 16px', display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid #E8E4F4' }}>
@@ -153,7 +156,7 @@ export function LandingPage() {
                 </div>
                 <div style={{ fontSize: 12, color: plan.highlight ? 'rgba(255,255,255,0.4)' : '#B0B0C8', marginBottom: 16 }}>+VAT where applicable</div>
                 <div style={{ fontSize: 14, color: plan.highlight ? 'rgba(255,255,255,0.75)' : '#5A5A7A', marginBottom: 28 }}>{plan.sites} · {plan.support}</div>
-                <a href={BUY_URL} target="_blank" rel="noopener noreferrer" style={{ display: 'block', textAlign: 'center', padding: '13px 0', background: plan.highlight ? '#FFFFFF' : PURPLE, color: plan.highlight ? PURPLE : '#fff', fontWeight: 700, fontSize: 14, borderRadius: 10, textDecoration: 'none' }}>
+                <a href={plan.url} target="_blank" rel="noopener noreferrer" style={{ display: 'block', textAlign: 'center', padding: '13px 0', background: plan.highlight ? '#FFFFFF' : PURPLE, color: plan.highlight ? PURPLE : '#fff', fontWeight: 700, fontSize: 14, borderRadius: 10, textDecoration: 'none' }}>
                   Buy {plan.name} — {plan.price}
                 </a>
                 <div style={{ borderTop: `1px solid ${plan.highlight ? 'rgba(255,255,255,0.2)' : '#F0ECF8'}`, marginTop: 24, paddingTop: 24 }}>
@@ -196,8 +199,8 @@ export function LandingPage() {
         </h2>
         <p style={{ fontSize: 18, color: '#5A5A7A', marginBottom: 48 }}>Install in 5 minutes. No coding. No JSON editing.</p>
         <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
-          <a href={BUY_URL} target="_blank" rel="noopener noreferrer" style={{ background: PURPLE, color: '#fff', fontSize: 17, fontWeight: 700, padding: '18px 36px', borderRadius: 12, textDecoration: 'none', boxShadow: '0 4px 24px rgba(123,79,255,0.35)' }}>Buy Developer — €119</a>
-          <a href={BUY_URL} target="_blank" rel="noopener noreferrer" style={{ color: '#9090B0', fontSize: 17, fontWeight: 500, padding: '18px 0', textDecoration: 'underline' }}>Or start with Starter for €59</a>
+          <a href={GUMROAD.developer} target="_blank" rel="noopener noreferrer" style={{ background: PURPLE, color: '#fff', fontSize: 17, fontWeight: 700, padding: '18px 36px', borderRadius: 12, textDecoration: 'none', boxShadow: '0 4px 24px rgba(123,79,255,0.35)' }}>Buy Developer — €119</a>
+          <a href={GUMROAD.starter} target="_blank" rel="noopener noreferrer" style={{ color: '#9090B0', fontSize: 17, fontWeight: 500, padding: '18px 0', textDecoration: 'underline' }}>Or start with Starter for €59</a>
         </div>
       </section>
 
@@ -206,9 +209,9 @@ export function LandingPage() {
         <img src={logoSrc} style={{ height: 52, width: 'auto' }} alt="AI Boost" />
         <div style={{ fontSize: 13, color: '#9090B0' }}>© 2026 AI Boost · support@aiboostnow.com</div>
         <div style={{ display: 'flex', gap: 24 }}>
-          {['Docs','Privacy','Terms'].map(l => (
-            <a key={l} href="#" style={{ fontSize: 13, color: '#9090B0', textDecoration: 'none' }}>{l}</a>
-          ))}
+          <a href="#docs"    style={{ fontSize: 13, color: '#9090B0', textDecoration: 'none' }}>Docs</a>
+          <a href="#privacy" style={{ fontSize: 13, color: '#9090B0', textDecoration: 'none' }}>Privacy</a>
+          <a href="#terms"   style={{ fontSize: 13, color: '#9090B0', textDecoration: 'none' }}>Terms</a>
         </div>
       </footer>
 
