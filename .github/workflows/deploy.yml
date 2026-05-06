@@ -37,9 +37,11 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -p 2222 -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Deploy via rsync
+      - name: Deploy via rsync (sudo)
         run: |
           rsync -avz --delete \
+            --rsync-path="sudo rsync" \
             -e "ssh -i ~/.ssh/deploy_key -p 2222 -o StrictHostKeyChecking=no" \
             dist/ \
             ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_DEPLOY_PATH }}/
+
