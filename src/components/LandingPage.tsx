@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import logoSrc from '../assets/logo.png'
 import videoSrc from '../assets/hero-video.mp4'
 
@@ -49,11 +50,16 @@ const css = `
   * { box-sizing: border-box; }
   body { margin: 0; }
   .ab-wrap { font-family: 'Inter', system-ui, sans-serif; background: #fff; color: #0C0B1D; overflow-x: hidden; }
-  .ab-nav { display:flex; align-items:center; justify-content:space-between; padding:0 64px; height:88px; border-bottom:1px solid #E8E4F4; position:sticky; top:0; background:#fff; z-index:100; }
+  .ab-nav { display:flex; align-items:center; justify-content:space-between; padding:0 64px; height:88px; border-bottom:1px solid #E8E4F4; position:sticky; top:0; background:#fff; z-index:200; }
   .ab-nav-links { display:flex; align-items:center; gap:32px; }
   .ab-nav-link { color:#5A5A7A; font-size:15px; font-weight:500; text-decoration:none; }
-  .ab-btn-primary { background:#7B4FFF; color:#fff; font-size:14px; font-weight:600; padding:11px 22px; border-radius:8px; text-decoration:none; white-space:nowrap; }
   .ab-logo { height:68px; width:auto; display:block; }
+  .ab-btn-primary { background:#7B4FFF; color:#fff; font-size:14px; font-weight:600; padding:11px 22px; border-radius:8px; text-decoration:none; white-space:nowrap; }
+  .ab-hamburger { display:none; background:none; border:none; cursor:pointer; padding:8px; color:#0C0B1D; line-height:1; }
+  .ab-mobile-menu { display:none; position:fixed; top:72px; left:0; right:0; background:#fff; border-bottom:1px solid #E8E4F4; box-shadow:0 8px 32px rgba(0,0,0,.1); z-index:199; padding:16px 24px 24px; flex-direction:column; gap:4px; }
+  .ab-mobile-menu.open { display:flex; }
+  .ab-mobile-link { color:#0C0B1D; font-size:17px; font-weight:600; text-decoration:none; padding:14px 0; border-bottom:1px solid #F0ECF8; }
+  .ab-mobile-cta { display:block; background:#7B4FFF; color:#fff; font-size:16px; font-weight:700; padding:15px; border-radius:10px; text-decoration:none; text-align:center; margin-top:12px; }
   .ab-hero { max-width:1200px; margin:0 auto; padding:90px 64px 72px; display:flex; align-items:center; gap:64px; }
   .ab-hero-text { flex:0 0 48%; }
   .ab-hero-video { flex:1; }
@@ -84,24 +90,26 @@ const css = `
   .ab-cta { padding:96px 64px; text-align:center; background:#fff; }
   .ab-footer { border-top:1px solid #E8E4F4; padding:40px 64px; display:flex; justify-content:space-between; align-items:center; background:#F8F7FF; flex-wrap:wrap; gap:16px; }
   @media (max-width:900px) {
-    .ab-nav { padding:0 24px; height:72px; }
+    .ab-nav { padding:0 20px; height:72px; }
+    .ab-nav-links { gap:0; }
     .ab-nav-links a.ab-nav-link { display:none; }
+    .ab-hamburger { display:flex; align-items:center; justify-content:center; }
     .ab-logo { height:52px; }
-    .ab-hero { flex-direction:column; padding:48px 24px 40px; gap:32px; }
+    .ab-hero { flex-direction:column; padding:48px 20px 40px; gap:32px; }
     .ab-hero-text { flex:none; width:100%; }
     .ab-h1 { font-size:36px; letter-spacing:-1px; }
     .ab-hero-p { font-size:16px; }
-    .ab-stats-wrap { padding:0 24px 48px; }
+    .ab-stats-wrap { padding:0 20px 48px; }
     .ab-stats { grid-template-columns:repeat(2,1fr); padding:24px; gap:20px; }
-    .ab-features { padding:64px 24px; }
+    .ab-features { padding:64px 20px; }
     .ab-feat-grid { grid-template-columns:1fr; }
     .ab-h2 { font-size:30px; }
-    .ab-pricing { padding:64px 24px; }
+    .ab-pricing { padding:64px 20px; }
     .ab-plan-grid { grid-template-columns:1fr; max-width:400px; margin:0 auto; }
     .ab-plan-highlight { transform:scale(1); }
-    .ab-faq { padding:64px 24px; }
-    .ab-cta { padding:64px 24px; }
-    .ab-footer { padding:32px 24px; flex-direction:column; align-items:flex-start; }
+    .ab-faq { padding:64px 20px; }
+    .ab-cta { padding:64px 20px; }
+    .ab-footer { padding:32px 20px; flex-direction:column; align-items:flex-start; }
   }
   @media (max-width:480px) {
     .ab-h1 { font-size:30px; }
@@ -111,6 +119,9 @@ const css = `
 `
 
 export function LandingPage() {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const close = () => setMenuOpen(false)
+
   return (
     <div className="ab-wrap">
       <style>{css}</style>
@@ -123,7 +134,20 @@ export function LandingPage() {
           <a href="#pricing"  className="ab-nav-link">Pricing</a>
           <a href={GUMROAD.developer} target="_blank" rel="noopener noreferrer" className="ab-btn-primary">Get AI Boost →</a>
         </div>
+        <button className="ab-hamburger" onClick={() => setMenuOpen(o => !o)} aria-label="Menu">
+          {menuOpen
+            ? <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            : <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          }
+        </button>
       </nav>
+
+      <div className={`ab-mobile-menu${menuOpen ? ' open' : ''}`}>
+        <a href="#features" className="ab-mobile-link" onClick={close}>Features</a>
+        <a href="#docs"     className="ab-mobile-link" onClick={close}>Docs</a>
+        <a href="#pricing"  className="ab-mobile-link" onClick={close}>Pricing</a>
+        <a href={GUMROAD.developer} target="_blank" rel="noopener noreferrer" className="ab-mobile-cta" onClick={close}>Get AI Boost →</a>
+      </div>
 
       <section className="ab-hero">
         <div className="ab-hero-text">
