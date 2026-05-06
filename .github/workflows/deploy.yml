@@ -50,3 +50,9 @@ jobs:
           ssh -i ~/.ssh/deploy_key -p 2222 -o StrictHostKeyChecking=no \
             ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
             "sudo chown -R lazarenet:lazarenet ${{ secrets.SSH_DEPLOY_PATH }}"
+
+      - name: Ensure aiboostnow.com in htaccess hotlink whitelist
+        run: |
+          ssh -i ~/.ssh/deploy_key -p 2222 -o StrictHostKeyChecking=no \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+            "grep -q 'aiboostnow\.com' /home/lazarenet/public_html/.htaccess || sudo sed -i 's|RewriteCond %{HTTP_REFERER} !\^https\?://(www\\.)\?testmyweb\\.net \[NC\]|RewriteCond %{HTTP_REFERER} !\^https\?://(www\\.)\?testmyweb\\.net [NC]\n    RewriteCond %{HTTP_REFERER} !\^https\?://(www\\.)\?aiboostnow\\.com [NC]|' /home/lazarenet/public_html/.htaccess"
