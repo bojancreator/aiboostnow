@@ -98,7 +98,7 @@ export const faqGroups: FaqGroup[] = [
     items: [
       {
         q: 'How much does AI Boost for Joomla cost?',
-        a: 'AI Boost for Joomla is available in three tiers: Starter at €59 (1 site), Developer at €119 (5 sites), and Agency at €199 (unlimited sites). All are one-time payments — no subscriptions. Payments are processed by Gumroad, which handles EU VAT automatically.',
+        a: 'AI Boost for Joomla is available in three tiers: Starter at €59 (1 site), Developer at €119 (5 sites), and Agency at €199 (unlimited sites). All are one-time payments — no subscriptions. EU VAT is handled automatically at checkout.',
       },
       {
         q: 'What are the differences between Starter, Developer, and Agency?',

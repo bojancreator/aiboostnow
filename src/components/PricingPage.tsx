@@ -5,16 +5,12 @@ import logoSrc from '../assets/ai-boost-logo.svg'
 const PURPLE = '#7B4FFF'
 const SITE_URL = 'https://aiboostnow.com'
 
-const GUMROAD = {
-  starter:   'https://aiboostnow.gumroad.com/l/joomlaboost-starter',
-  developer: 'https://aiboostnow.gumroad.com/l/joomlaboost',
-  agency:    'https://aiboostnow.gumroad.com/l/joomlaboost-agency',
-}
+const CHECKOUT_URL = '#'
 
 const plans = [
-  { name: 'Starter',   price: '€59',  sites: '1 site',         badge: null,           highlight: false, support: 'Email support',          url: GUMROAD.starter },
-  { name: 'Developer', price: '€119', sites: '5 sites',        badge: 'Most Popular', highlight: true,  support: 'Priority email support', url: GUMROAD.developer },
-  { name: 'Agency',    price: '€199', sites: 'Unlimited sites', badge: null,           highlight: false, support: 'Priority email support', url: GUMROAD.agency },
+  { name: 'Starter',   price: '€59',  sites: '1 site',         badge: null,           highlight: false, support: 'Email support',          url: CHECKOUT_URL },
+  { name: 'Developer', price: '€119', sites: '5 sites',        badge: 'Most Popular', highlight: true,  support: 'Priority email support', url: CHECKOUT_URL },
+  { name: 'Agency',    price: '€199', sites: 'Unlimited sites', badge: null,           highlight: false, support: 'Priority email support', url: CHECKOUT_URL },
 ]
 
 const featureList = [
@@ -38,7 +34,7 @@ const faqs = [
   { q: 'Is there a free trial?',                     a: 'No free trial, but every purchase has a 30-day money-back guarantee. If it does not work for your site, we refund you in full — no questions asked.' },
   { q: 'Can I upgrade my license later?',            a: 'Yes. Contact support@aiboostnow.com and we will arrange an upgrade at the price difference.' },
   { q: 'What happens after 1 year?',                 a: 'The plugin keeps working on your site forever. You only need to renew (at 50% of the original price) if you want to receive new features and updates released after your first year.' },
-  { q: 'How does Gumroad handle EU VAT?',            a: 'Gumroad is the Merchant of Record. They collect and remit EU VAT automatically — you do not need to worry about tax compliance.' },
+  { q: 'Is EU VAT included in the price?',           a: 'VAT is added at checkout where applicable. It is collected and remitted automatically — you do not need to worry about tax compliance.' },
 ]
 
 const css = `
@@ -104,7 +100,7 @@ export function PricingPage() {
             <Link to="/faq" className="ab-nav-link">FAQ</Link>
           </div>
           <div className="ab-nav-cta">
-            <a href={GUMROAD.developer} target="_blank" rel="noopener noreferrer" className="ab-btn-primary">Get AI Boost →</a>
+            <Link to="/pricing" className="ab-btn-primary">Get AI Boost →</Link>
           </div>
         </div>
       </nav>
@@ -148,7 +144,7 @@ export function PricingPage() {
         </div>
 
         <div style={{ textAlign: 'center', marginTop: 40, fontSize: 14, color: '#9090B0' }}>
-          🛡️ 30-day money-back guarantee &nbsp;·&nbsp; Payments by Gumroad &nbsp;·&nbsp; EU VAT handled automatically
+          🛡️ 30-day money-back guarantee &nbsp;·&nbsp; EU VAT handled automatically
         </div>
 
         <div style={{ borderTop: '1px solid #E8E4F4', marginTop: 80, paddingTop: 72 }}>

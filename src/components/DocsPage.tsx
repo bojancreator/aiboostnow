@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import logoSrc from '../assets/ai-boost-logo.svg'
 
 const PURPLE = '#7B4FFF'
-const GUMROAD_DEV = 'https://aiboostnow.gumroad.com/l/joomlaboost'
+const CHECKOUT_URL = '/pricing'
 const SITE_URL = 'https://aiboostnow.com'
 
 const css = `
@@ -136,7 +136,7 @@ export function DocsPage() {
             <Link to="/faq" className="ab-nav-link">FAQ</Link>
           </div>
           <div className="ab-nav-cta">
-            <a href={GUMROAD_DEV} target="_blank" rel="noopener noreferrer" className="ab-btn-primary">Get AI Boost →</a>
+            <Link to="/pricing" className="ab-btn-primary">Get AI Boost →</Link>
           </div>
         </div>
       </nav>

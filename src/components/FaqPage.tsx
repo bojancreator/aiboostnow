@@ -5,7 +5,7 @@ import logoSrc from '../assets/ai-boost-logo.svg'
 import { faqGroups } from '../data/faqData'
 
 const PURPLE = '#7B4FFF'
-const GUMROAD_DEV = 'https://aiboostnow.gumroad.com/l/joomlaboost'
+const CHECKOUT_URL = '/pricing'
 const SITE_URL = 'https://aiboostnow.com'
 
 const css = `
@@ -79,7 +79,7 @@ export function FaqPage() {
             <Link to="/faq" className="ab-nav-link" style={{ color: PURPLE, fontWeight: 700 }}>FAQ</Link>
           </div>
           <div className="ab-nav-cta">
-            <a href={GUMROAD_DEV} target="_blank" rel="noopener noreferrer" className="ab-btn-primary">Get AI Boost →</a>
+            <Link to="/pricing" className="ab-btn-primary">Get AI Boost →</Link>
           </div>
         </div>
       </nav>

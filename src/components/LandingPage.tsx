@@ -4,18 +4,13 @@ import { Helmet } from 'react-helmet-async'
 import logoSrc from '../assets/ai-boost-logo.svg'
 import videoSrc from '../assets/hero-video.mp4'
 
-const GUMROAD = {
-  starter:   'https://aiboostnow.gumroad.com/l/joomlaboost-starter',
-  developer: 'https://aiboostnow.gumroad.com/l/joomlaboost',
-  agency:    'https://aiboostnow.gumroad.com/l/joomlaboost-agency',
-}
-
 const PURPLE = '#7B4FFF'
+const CHECKOUT_URL = '/pricing'
 
 const plans = [
-  { name: 'Starter',   price: '€59',  sites: '1 site',          badge: null,           highlight: false, support: 'Email support',          url: GUMROAD.starter },
-  { name: 'Developer', price: '€119', sites: '5 sites',         badge: 'Most Popular', highlight: true,  support: 'Priority email support', url: GUMROAD.developer },
-  { name: 'Agency',    price: '€199', sites: 'Unlimited sites',  badge: null,           highlight: false, support: 'Priority email support', url: GUMROAD.agency },
+  { name: 'Starter',   price: '€59',  sites: '1 site',          badge: null,           highlight: false, support: 'Email support',          url: CHECKOUT_URL },
+  { name: 'Developer', price: '€119', sites: '5 sites',         badge: 'Most Popular', highlight: true,  support: 'Priority email support', url: CHECKOUT_URL },
+  { name: 'Agency',    price: '€199', sites: 'Unlimited sites',  badge: null,           highlight: false, support: 'Priority email support', url: CHECKOUT_URL },
 ]
 
 const feats = [
@@ -223,7 +218,7 @@ export function LandingPage() {
             <Link to="/faq"     className="ab-nav-link">FAQ</Link>
           </div>
           <div className="ab-nav-cta">
-            <a href={GUMROAD.developer} target="_blank" rel="noopener noreferrer" className="ab-btn-primary">Get AI Boost →</a>
+            <Link to="/pricing" className="ab-btn-primary">Get AI Boost →</Link>
             <button className="ab-hamburger" onClick={() => setMenuOpen(o => !o)} aria-label="Menu">
               {menuOpen
                 ? <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -240,7 +235,7 @@ export function LandingPage() {
         <Link to="/docs"    className="ab-mobile-link" onClick={close}>Docs</Link>
         <Link to="/blog"    className="ab-mobile-link" onClick={close}>Blog</Link>
         <Link to="/faq"     className="ab-mobile-link" onClick={close}>FAQ</Link>
-        <a href={GUMROAD.developer} target="_blank" rel="noopener noreferrer" className="ab-mobile-cta" onClick={close}>Get AI Boost →</a>
+        <Link to="/pricing" className="ab-mobile-cta" onClick={close}>Get AI Boost →</Link>
       </div>
 
       <section className="ab-hero">
@@ -257,7 +252,7 @@ export function LandingPage() {
             AI Boost for Joomla generates Schema.org, XML sitemap, llms.txt, and AI crawler signals — so ChatGPT, Perplexity, and Google AI Overview recommend your site. Install in 5 minutes. No coding.
           </p>
           <div className="ab-hero-btns">
-            <a href={GUMROAD.developer} target="_blank" rel="noopener noreferrer" className="ab-btn-hero">Buy Developer — €119</a>
+            <Link to="/pricing" className="ab-btn-hero">Buy Developer — €119</Link>
             <a href="#features" className="ab-btn-outline">View all features ↓</a>
           </div>
           <div style={{ display:'flex', flexWrap:'wrap', gap:'12px 28px' }}>
@@ -443,7 +438,7 @@ export function LandingPage() {
             ))}
           </div>
           <div style={{ textAlign:'center', marginTop:40, fontSize:14, color:'#9090B0' }}>
-            🛡️ 30-day money-back guarantee &nbsp;·&nbsp; Payments by Gumroad &nbsp;·&nbsp; EU VAT handled automatically
+            🛡️ 30-day money-back guarantee &nbsp;·&nbsp; EU VAT handled automatically
           </div>
         </div>
       </section>
@@ -467,8 +462,8 @@ export function LandingPage() {
         </h2>
         <p style={{ fontSize:18, color:'#5A5A7A', marginBottom:48 }}>Install in 5 minutes. No coding. No JSON editing.</p>
         <div style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
-          <a href={GUMROAD.developer} target="_blank" rel="noopener noreferrer" style={{ background:PURPLE, color:'#fff', fontSize:17, fontWeight:700, padding:'18px 36px', borderRadius:12, textDecoration:'none', boxShadow:'0 4px 24px rgba(123,79,255,.35)' }}>Buy Developer — €119</a>
-          <a href={GUMROAD.starter}   target="_blank" rel="noopener noreferrer" style={{ color:'#9090B0', fontSize:17, fontWeight:500, padding:'18px 0', textDecoration:'underline' }}>Or start with Starter for €59</a>
+          <Link to="/pricing" style={{ background:PURPLE, color:'#fff', fontSize:17, fontWeight:700, padding:'18px 36px', borderRadius:12, textDecoration:'none', boxShadow:'0 4px 24px rgba(123,79,255,.35)' }}>Buy Developer — €119</Link>
+          <Link to="/pricing" style={{ color:'#9090B0', fontSize:17, fontWeight:500, padding:'18px 0', textDecoration:'underline' }}>Or start with Starter for €59</Link>
         </div>
       </section>
 

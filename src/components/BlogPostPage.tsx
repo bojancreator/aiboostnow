@@ -4,7 +4,7 @@ import logoSrc from '../assets/ai-boost-logo.svg'
 import { getBlogPost, blogPosts } from '../data/blogPosts'
 
 const PURPLE = '#7B4FFF'
-const GUMROAD_DEV = 'https://aiboostnow.gumroad.com/l/joomlaboost'
+const CHECKOUT_URL = '/pricing'
 const SITE_URL = 'https://aiboostnow.com'
 
 const css = `
@@ -121,7 +121,7 @@ export function BlogPostPage() {
             <Link to="/faq" className="ab-nav-link">FAQ</Link>
           </div>
           <div className="ab-nav-cta">
-            <a href={GUMROAD_DEV} target="_blank" rel="noopener noreferrer" className="ab-btn-primary">Get AI Boost →</a>
+            <Link to="/pricing" className="ab-btn-primary">Get AI Boost →</Link>
           </div>
         </div>
       </nav>
@@ -160,10 +160,10 @@ export function BlogPostPage() {
           <p style={{ fontSize: 15, color: '#5A5A7A', margin: '0 0 24px', lineHeight: 1.65 }}>
             Everything described in this article — and more — is built into AI Boost for Joomla. Install in 5 minutes, no coding required.
           </p>
-          <a href={GUMROAD_DEV} target="_blank" rel="noopener noreferrer"
+          <Link to="/pricing"
             style={{ background: PURPLE, color: '#fff', fontWeight: 700, fontSize: 15, padding: '13px 28px', borderRadius: 10, textDecoration: 'none', display: 'inline-block' }}>
             Get AI Boost for Joomla →
-          </a>
+          </Link>
         </div>
 
         {related.length > 0 && (
