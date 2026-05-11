@@ -214,9 +214,10 @@ export function LandingPage() {
         <img src={logoSrc} className="ab-logo" alt="AI Boost" />
         <div className="ab-nav-links">
           <a href="#features" className="ab-nav-link">Features</a>
-          <a href="#pricing"  className="ab-nav-link">Pricing</a>
-          <Link to="/blog" className="ab-nav-link">Blog</Link>
-          <Link to="/faq"  className="ab-nav-link">FAQ</Link>
+          <Link to="/pricing" className="ab-nav-link">Pricing</Link>
+          <Link to="/docs"    className="ab-nav-link">Docs</Link>
+          <Link to="/blog"    className="ab-nav-link">Blog</Link>
+          <Link to="/faq"     className="ab-nav-link">FAQ</Link>
           <a href={GUMROAD.developer} target="_blank" rel="noopener noreferrer" className="ab-btn-primary">Get AI Boost →</a>
         </div>
         <button className="ab-hamburger" onClick={() => setMenuOpen(o => !o)} aria-label="Menu">
@@ -229,9 +230,10 @@ export function LandingPage() {
 
       <div className={`ab-mobile-menu${menuOpen ? ' open' : ''}`}>
         <a href="#features" className="ab-mobile-link" onClick={close}>Features</a>
-        <a href="#pricing"  className="ab-mobile-link" onClick={close}>Pricing</a>
-        <Link to="/blog" className="ab-mobile-link" onClick={close}>Blog</Link>
-        <Link to="/faq"  className="ab-mobile-link" onClick={close}>FAQ</Link>
+        <Link to="/pricing" className="ab-mobile-link" onClick={close}>Pricing</Link>
+        <Link to="/docs"    className="ab-mobile-link" onClick={close}>Docs</Link>
+        <Link to="/blog"    className="ab-mobile-link" onClick={close}>Blog</Link>
+        <Link to="/faq"     className="ab-mobile-link" onClick={close}>FAQ</Link>
         <a href={GUMROAD.developer} target="_blank" rel="noopener noreferrer" className="ab-mobile-cta" onClick={close}>Get AI Boost →</a>
       </div>
 
@@ -468,8 +470,10 @@ export function LandingPage() {
         <img src={logoSrc} style={{ height:54, width:'auto' }} alt="AI Boost" />
         <div style={{ fontSize:13, color:'#9090B0' }}>© 2026 AI Boost · support@aiboostnow.com</div>
         <div style={{ display:'flex', gap:24 }}>
-          <Link to="/blog" style={{ fontSize:13, color:'#9090B0', textDecoration:'none' }}>Blog</Link>
-          <Link to="/faq"  style={{ fontSize:13, color:'#9090B0', textDecoration:'none' }}>FAQ</Link>
+          <Link to="/pricing" style={{ fontSize:13, color:'#9090B0', textDecoration:'none' }}>Pricing</Link>
+          <Link to="/docs"    style={{ fontSize:13, color:'#9090B0', textDecoration:'none' }}>Docs</Link>
+          <Link to="/blog"    style={{ fontSize:13, color:'#9090B0', textDecoration:'none' }}>Blog</Link>
+          <Link to="/faq"     style={{ fontSize:13, color:'#9090B0', textDecoration:'none' }}>FAQ</Link>
           <a href="#privacy" style={{ fontSize:13, color:'#9090B0', textDecoration:'none' }}>Privacy</a>
         </div>
       </footer>
