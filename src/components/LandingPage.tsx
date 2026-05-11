@@ -211,7 +211,7 @@ export function LandingPage() {
         <div className="ab-nav">
           <img src={logoSrc} className="ab-logo" alt="AI Boost" />
           <div className="ab-nav-links">
-            <a href="#features" className="ab-nav-link">Features</a>
+            <Link to="/features" className="ab-nav-link">Features</Link>
             <Link to="/pricing" className="ab-nav-link">Pricing</Link>
             <Link to="/docs"    className="ab-nav-link">Docs</Link>
             <Link to="/blog"    className="ab-nav-link">Blog</Link>
@@ -230,7 +230,7 @@ export function LandingPage() {
       </nav>
 
       <div className={`ab-mobile-menu${menuOpen ? ' open' : ''}`}>
-        <a href="#features" className="ab-mobile-link" onClick={close}>Features</a>
+        <Link to="/features" className="ab-mobile-link" onClick={close}>Features</Link>
         <Link to="/pricing" className="ab-mobile-link" onClick={close}>Pricing</Link>
         <Link to="/docs"    className="ab-mobile-link" onClick={close}>Docs</Link>
         <Link to="/blog"    className="ab-mobile-link" onClick={close}>Blog</Link>
@@ -253,7 +253,7 @@ export function LandingPage() {
           </p>
           <div className="ab-hero-btns">
             <Link to="/pricing" className="ab-btn-hero">Buy Developer — €119</Link>
-            <a href="#features" className="ab-btn-outline">View all features ↓</a>
+            <Link to="/features" className="ab-btn-outline">View all features ↓</Link>
           </div>
           <div style={{ display:'flex', flexWrap:'wrap', gap:'12px 28px' }}>
             {[['Schema.org','JSON-LD'],['llms.txt','AI crawlers'],['IndexNow','Instant submit'],['11 languages','Multilingual']].map(([n,d]) => (

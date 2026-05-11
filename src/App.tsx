@@ -5,12 +5,14 @@ import { BlogPostPage } from './components/BlogPostPage'
 import { FaqPage } from './components/FaqPage'
 import { DocsPage } from './components/DocsPage'
 import { PricingPage } from './components/PricingPage'
+import { FeaturesPage } from './components/FeaturesPage'
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/features" element={<FeaturesPage />} />
         <Route path="/blog" element={<BlogListPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/faq" element={<FaqPage />} />

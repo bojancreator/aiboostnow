@@ -129,7 +129,7 @@ export function DocsPage() {
         <div className="ab-nav">
           <Link to="/"><img src={logoSrc} className="ab-logo" alt="AI Boost" /></Link>
           <div className="ab-nav-links">
-            <Link to="/#features" className="ab-nav-link">Features</Link>
+            <Link to="/features" className="ab-nav-link">Features</Link>
             <Link to="/pricing" className="ab-nav-link">Pricing</Link>
             <Link to="/docs" className="ab-nav-link" style={{ color: PURPLE, fontWeight: 700 }}>Docs</Link>
             <Link to="/blog" className="ab-nav-link">Blog</Link>
