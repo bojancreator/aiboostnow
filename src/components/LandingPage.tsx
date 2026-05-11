@@ -5,6 +5,7 @@ import logoSrc from '../assets/ai-boost-logo.svg'
 import videoSrc from '../assets/hero-video.mp4'
 
 const PURPLE = '#7B4FFF'
+const SITE_URL = 'https://aiboostnow.com'
 const CHECKOUT_URL = '/pricing'
 
 const plans = [
@@ -200,10 +201,39 @@ export function LandingPage() {
         <meta property="og:description" content="Make your Joomla site visible to ChatGPT, Perplexity, and Google AI Overview. Schema.org, XML sitemap, llms.txt, IndexNow. Install in 5 minutes." />
         <meta property="og:url" content="https://aiboostnow.com/" />
         <meta property="og:site_name" content="AI Boost" />
+        <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="AI Boost for Joomla — Visible to AI Search" />
         <meta name="twitter:description" content="Make your Joomla site visible to ChatGPT, Perplexity, and Google AI Overview. Schema.org, XML sitemap, llms.txt, IndexNow. Install in 5 minutes." />
+        <meta name="twitter:image" content={`${SITE_URL}/og-image.png`} />
       </Helmet>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'AI Boost',
+        url: SITE_URL,
+        contactPoint: { '@type': 'ContactPoint', email: 'support@aiboostnow.com', contactType: 'customer support' },
+      }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'AI Boost',
+        url: SITE_URL,
+      }) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: 'AI Boost for Joomla',
+        applicationCategory: 'BusinessApplication',
+        operatingSystem: 'Joomla 4, Joomla 5, Joomla 6',
+        offers: [
+          { '@type': 'Offer', name: 'Starter',   price: '59.00',  priceCurrency: 'EUR', availability: 'https://schema.org/InStock' },
+          { '@type': 'Offer', name: 'Developer', price: '119.00', priceCurrency: 'EUR', availability: 'https://schema.org/InStock' },
+          { '@type': 'Offer', name: 'Agency',    price: '199.00', priceCurrency: 'EUR', availability: 'https://schema.org/InStock' },
+        ],
+      }) }} />
 
       <style>{css}</style>
 

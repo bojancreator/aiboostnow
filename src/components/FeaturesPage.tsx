@@ -209,6 +209,13 @@ export function FeaturesPage() {
         <meta name="twitter:image" content={`${SITE_URL}/og-image.png`} />
       </Helmet>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'AI Boost',
+        url: SITE_URL,
+        contactPoint: { '@type': 'ContactPoint', email: 'support@aiboostnow.com', contactType: 'customer support' },
+      }) }} />
 
       <style>{css}</style>
 

@@ -60,20 +60,25 @@ export function FaqPage() {
         <meta property="og:description" content={pageDescription} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:site_name" content="AI Boost" />
+        <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content={`${SITE_URL}/og-image.png`} />
       </Helmet>
 
       <style>{css}</style>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'Organization', name: 'AI Boost', url: SITE_URL, contactPoint: { '@type': 'ContactPoint', email: 'support@aiboostnow.com', contactType: 'customer support' } }) }} />
 
       <nav className="ab-nav-bar">
         <div className="ab-nav">
           <Link to="/"><img src={logoSrc} className="ab-logo" alt="AI Boost" /></Link>
           <div className="ab-nav-links">
             <Link to="/features" className="ab-nav-link">Features</Link>
-            <Link to="/#pricing" className="ab-nav-link">Pricing</Link>
+            <Link to="/pricing" className="ab-nav-link">Pricing</Link>
             <Link to="/docs" className="ab-nav-link">Docs</Link>
             <Link to="/blog" className="ab-nav-link">Blog</Link>
             <Link to="/faq" className="ab-nav-link" style={{ color: PURPLE, fontWeight: 700 }}>FAQ</Link>
