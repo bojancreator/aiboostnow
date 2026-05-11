@@ -736,10 +736,10 @@ export function FeaturesPage() {
       <section className="ft-cta">
         <div style={{ maxWidth: 640, margin: '0 auto' }}>
           <h2 style={{ fontSize: 40, fontWeight: 900, letterSpacing: '-1.2px', margin: '0 0 20px', color: '#0C0B1D' }}>
-            Every feature. <span style={{ color: PURPLE }}>Every license.</span>
+            One plugin. <span style={{ color: PURPLE }}>Pay once.</span>
           </h2>
           <p style={{ fontSize: 18, color: '#5A5A7A', margin: '0 0 36px', lineHeight: 1.65 }}>
-            All features are included in every license. No locked modules, no add-ons. Pay once — use forever.
+            Core SEO &amp; schema features are available on all plans. Advanced features — IndexNow, llms.txt, Events, specialised site types, and Advanced Hours — are included in Developer and Agency licenses.
           </p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 28 }}>
             <Link to={CHECKOUT_URL} className="ab-btn-primary" style={{ fontSize: 16, padding: '14px 32px', borderRadius: 10 }}>
