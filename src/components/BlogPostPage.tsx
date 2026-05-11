@@ -1,6 +1,6 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
-import logoSrc from '../assets/logo.png'
+import logoSrc from '../assets/ai-boost-logo.svg'
 import { getBlogPost, blogPosts } from '../data/blogPosts'
 
 const PURPLE = '#7B4FFF'
