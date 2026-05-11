@@ -45,8 +45,10 @@ const css = `
 * { box-sizing: border-box; }
 body { margin: 0; }
 .ab-wrap { font-family: 'Inter', system-ui, sans-serif; background: #fff; color: #0C0B1D; overflow-x: hidden; }
-.ab-nav { display:flex; align-items:center; justify-content:space-between; padding:0 64px; height:88px; border-bottom:1px solid #E8E4F4; position:sticky; top:0; background:#fff; z-index:200; }
-.ab-nav-links { display:flex; align-items:center; gap:32px; }
+.ab-nav-bar { border-bottom:1px solid #E8E4F4; position:sticky; top:0; background:#fff; z-index:200; }
+.ab-nav { max-width:1200px; margin:0 auto; padding:0 24px; height:80px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; }
+.ab-nav-links { display:flex; align-items:center; justify-content:center; gap:32px; }
+.ab-nav-cta { display:flex; justify-content:flex-end; }
 .ab-nav-link { color:#5A5A7A; font-size:15px; font-weight:500; text-decoration:none; }
 .ab-logo { height:75px; width:auto; display:block; }
 .ab-btn-primary { background:#7B4FFF; color:#fff; font-size:14px; font-weight:600; padding:11px 22px; border-radius:8px; text-decoration:none; white-space:nowrap; }
@@ -59,8 +61,8 @@ body { margin: 0; }
 .ab-feat-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
 .ab-feat-item { display:flex; gap:10px; align-items:flex-start; }
 @media (max-width:900px) {
-  .ab-nav { padding:0 20px; height:64px; }
-  .ab-nav-links { gap:16px; }
+  .ab-nav { padding:0 16px; height:64px; grid-template-columns:1fr auto; }
+  .ab-nav-links { display:none; }
   .ab-logo { height:54px; }
   .ab-footer { padding:32px 20px; flex-direction:column; align-items:flex-start; }
   .ab-plan-grid { grid-template-columns:1fr !important; max-width:400px; margin:0 auto; }
@@ -91,15 +93,19 @@ export function PricingPage() {
 
       <style>{css}</style>
 
-      <nav className="ab-nav">
-        <Link to="/"><img src={logoSrc} className="ab-logo" alt="AI Boost" /></Link>
-        <div className="ab-nav-links">
-          <Link to="/#features" className="ab-nav-link">Features</Link>
-          <Link to="/pricing" className="ab-nav-link" style={{ color: PURPLE, fontWeight: 700 }}>Pricing</Link>
-          <Link to="/docs" className="ab-nav-link">Docs</Link>
-          <Link to="/blog" className="ab-nav-link">Blog</Link>
-          <Link to="/faq" className="ab-nav-link">FAQ</Link>
-          <a href={GUMROAD.developer} target="_blank" rel="noopener noreferrer" className="ab-btn-primary">Get AI Boost →</a>
+      <nav className="ab-nav-bar">
+        <div className="ab-nav">
+          <Link to="/"><img src={logoSrc} className="ab-logo" alt="AI Boost" /></Link>
+          <div className="ab-nav-links">
+            <Link to="/#features" className="ab-nav-link">Features</Link>
+            <Link to="/pricing" className="ab-nav-link" style={{ color: PURPLE, fontWeight: 700 }}>Pricing</Link>
+            <Link to="/docs" className="ab-nav-link">Docs</Link>
+            <Link to="/blog" className="ab-nav-link">Blog</Link>
+            <Link to="/faq" className="ab-nav-link">FAQ</Link>
+          </div>
+          <div className="ab-nav-cta">
+            <a href={GUMROAD.developer} target="_blank" rel="noopener noreferrer" className="ab-btn-primary">Get AI Boost →</a>
+          </div>
         </div>
       </nav>
 
