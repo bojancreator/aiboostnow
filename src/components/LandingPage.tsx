@@ -84,7 +84,7 @@ const css = `
   .ab-nav { display:flex; align-items:center; justify-content:space-between; padding:0 64px; height:88px; border-bottom:1px solid #E8E4F4; position:sticky; top:0; background:#fff; z-index:200; }
   .ab-nav-links { display:flex; align-items:center; gap:32px; }
   .ab-nav-link { color:#5A5A7A; font-size:15px; font-weight:500; text-decoration:none; }
-  .ab-logo { height:88px; width:auto; display:block; }
+  .ab-logo { height:75px; width:auto; display:block; }
   .ab-btn-primary { background:#7B4FFF; color:#fff; font-size:14px; font-weight:600; padding:11px 22px; border-radius:8px; text-decoration:none; white-space:nowrap; }
   .ab-hamburger { display:none; background:none; border:none; cursor:pointer; padding:8px; color:#0C0B1D; line-height:1; }
   .ab-mobile-menu { display:none; position:fixed; top:72px; left:0; right:0; background:#fff; border-bottom:1px solid #E8E4F4; box-shadow:0 8px 32px rgba(0,0,0,.1); z-index:199; padding:16px 24px 24px; flex-direction:column; gap:4px; }
@@ -157,7 +157,7 @@ const css = `
     .ab-nav-links { gap:0; }
     .ab-nav-links a.ab-nav-link { display:none; }
     .ab-hamburger { display:flex; align-items:center; justify-content:center; }
-    .ab-logo { height:64px; }
+    .ab-logo { height:54px; }
     .ab-hero { flex-direction:column; padding:48px 20px 40px; gap:32px; }
     .ab-hero-text { flex:none; width:100%; }
     .ab-h1 { font-size:36px; letter-spacing:-1px; }
@@ -465,7 +465,7 @@ export function LandingPage() {
       </section>
 
       <footer className="ab-footer">
-        <img src={logoSrc} style={{ height:64, width:'auto' }} alt="AI Boost" />
+        <img src={logoSrc} style={{ height:54, width:'auto' }} alt="AI Boost" />
         <div style={{ fontSize:13, color:'#9090B0' }}>© 2026 AI Boost · support@aiboostnow.com</div>
         <div style={{ display:'flex', gap:24 }}>
           <Link to="/blog" style={{ fontSize:13, color:'#9090B0', textDecoration:'none' }}>Blog</Link>
