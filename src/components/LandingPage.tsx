@@ -23,19 +23,21 @@ const feats = [
   { icon: '⚡', title: 'IndexNow',               desc: 'Instant URL submission to Bing, Yandex, and Seznam the moment you publish new content.' },
   { icon: '📊', title: 'Analytics Suite',        desc: 'GA4, Google Tag Manager, Google Search Console verification, Meta Pixel — all from one panel.' },
   { icon: '🌍', title: '11 Language Packs',      desc: 'Full admin UI in EN, DE, FR, ES, IT, RU, PT, ZH, AR, JA, SR. Multilingual custom fields too.' },
-    { icon: '🕐', title: 'Business Hours',           desc: 'Compact 7-row weekly table — set opening hours in seconds. "All same" or "Individual days" toggle replaces 46 separate fields.' },
-  ]
+  { icon: '🕐', title: 'Business Hours Widget',  desc: 'Set opening hours in seconds — compact 7-row table with "All same" or "Individual days" toggle generates proper Schema.org automatically.' },
+  { icon: '🏪', title: '13 Site Type Presets',   desc: 'Restaurant, Hotel, Medical, Law firm, Gym, Real estate and more — one click fills the right schema fields.' },
+]
 
 const featureList = [
   'All plugin features included',
   'Schema.org JSON-LD (all types)',
+  'Business Hours widget (compact table)',
   'XML Sitemap + hreflang',
   'OpenGraph + Twitter Cards',
   'robots.txt with AI crawler rules',
   'llms.txt generator',
   'IndexNow integration',
   'GA4, GTM, Meta Pixel',
-  '5 Vertical Presets',
+  '13 Site Type Presets',
   '11 language packs',
   '1 year of updates & bug fixes',
 ]
@@ -47,24 +49,33 @@ const faqs = [
   { q: 'Can I upgrade my license later?',            a: 'Yes. Contact support@aiboostnow.com and we will arrange an upgrade at the price difference.' },
 ]
 
+const siteTypes = [
+  { icon: '🏪', name: 'LocalBusiness',             desc: 'General local service with address & hours' },
+  { icon: '🍽️', name: 'Restaurant',                desc: 'Menu, cuisine, reservations, food schema' },
+  { icon: '🏨', name: 'Hotel',                     desc: 'Amenities, check-in, room types, star rating' },
+  { icon: '🏥', name: 'MedicalClinic',             desc: 'Specialty, accepting patients, opening hours' },
+  { icon: '⚖️', name: 'LegalService',              desc: 'Practice areas, attorney, jurisdiction' },
+  { icon: '🎓', name: 'EducationalOrganization',   desc: 'Courses, accreditation, campus info' },
+  { icon: '💪', name: 'HealthClub',                desc: 'Fitness amenities, membership, class schedules' },
+  { icon: '🦷', name: 'Dentist',                   desc: 'Dental specialty, insurance accepted, booking' },
+  { icon: '🏠', name: 'RealEstateAgent',           desc: 'Property listings, service area, contact' },
+  { icon: '👤', name: 'Person',                    desc: 'Portfolio, author, speaker, professional profile' },
+  { icon: '📰', name: 'NewsMediaOrganization',     desc: 'Publisher schema, editorial team, topics' },
+  { icon: '🎫', name: 'Event',                     desc: 'Date, venue, ticket link, performer schema' },
+  { icon: '❓', name: 'FAQPage',                   desc: 'Auto-detected questions & answers on every page' },
+]
 
-  const siteTypes = [
-    { icon: '🏪', name: 'LocalBusiness',             desc: 'General local service with address & hours' },
-    { icon: '🍽️', name: 'Restaurant',                desc: 'Menu, cuisine, reservations, food schema' },
-    { icon: '🏨', name: 'Hotel',                     desc: 'Amenities, check-in, room types, star rating' },
-    { icon: '🏥', name: 'MedicalClinic',             desc: 'Specialty, accepting patients, opening hours' },
-    { icon: '⚖️', name: 'LegalService',             desc: 'Practice areas, attorney, jurisdiction' },
-    { icon: '🎓', name: 'EducationalOrganization',   desc: 'Courses, accreditation, campus info' },
-    { icon: '💪', name: 'HealthClub',                desc: 'Fitness amenities, membership, class schedules' },
-    { icon: '🦷', name: 'Dentist',                   desc: 'Dental specialty, insurance accepted, booking' },
-    { icon: '🏠', name: 'RealEstateAgent',           desc: 'Property listings, service area, contact' },
-    { icon: '👤', name: 'Person',                    desc: 'Portfolio, author, speaker, professional profile' },
-    { icon: '📰', name: 'NewsMediaOrganization',     desc: 'Publisher schema, editorial team, topics' },
-    { icon: '🎫', name: 'Event',                     desc: 'Date, venue, ticket link, performer schema' },
-    { icon: '❓', name: 'FAQPage',                   desc: 'Auto-detected questions & answers on every page' },
-  ]
+const bhRows = [
+  { day: 'Mon', open: '09:00', close: '17:00', isOpen: true },
+  { day: 'Tue', open: '09:00', close: '17:00', isOpen: true },
+  { day: 'Wed', open: '09:00', close: '17:00', isOpen: true },
+  { day: 'Thu', open: '09:00', close: '18:00', isOpen: true },
+  { day: 'Fri', open: '09:00', close: '16:00', isOpen: true },
+  { day: 'Sat', open: '10:00', close: '14:00', isOpen: true },
+  { day: 'Sun', open: '',      close: '',      isOpen: false },
+]
 
-  const css = `
+const css = `
   * { box-sizing: border-box; }
   body { margin: 0; }
   .ab-wrap { font-family: 'Inter', system-ui, sans-serif; background: #fff; color: #0C0B1D; overflow-x: hidden; }
@@ -96,6 +107,38 @@ const faqs = [
   .ab-h2 { font-size:44px; font-weight:900; letter-spacing:-1.5px; margin:0 0 16px; color:#0C0B1D; }
   .ab-feat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
   .ab-feat-card { background:#fff; border:1.5px solid #E8E4F4; border-radius:16px; padding:32px 28px; }
+  .ab-site-types { background:#fff; padding:96px 64px; border-top:1px solid #E8E4F4; border-bottom:1px solid #E8E4F4; }
+  .ab-type-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .ab-type-card { background:#F8F7FF; border:1.5px solid #E8E4F4; border-radius:12px; padding:20px 16px; display:flex; flex-direction:column; align-items:flex-start; gap:8px; }
+  .ab-type-name { font-size:14px; font-weight:700; color:#0C0B1D; font-family:monospace; }
+  .ab-type-desc { font-size:12px; color:#5A5A7A; line-height:1.5; }
+  .ab-bh { background:#F8F7FF; padding:96px 64px; border-bottom:1px solid #E8E4F4; }
+  .ab-bh-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; gap:72px; }
+  .ab-bh-text { flex:0 0 44%; }
+  .ab-bh-pill { display:inline-flex; align-items:center; gap:8px; background:#F3F0FF; border:1px solid #D4C9FF; border-radius:100px; padding:5px 14px; margin-bottom:20px; font-size:12px; font-weight:700; color:#7B4FFF; text-transform:uppercase; letter-spacing:.5px; }
+  .ab-bh-h3 { font-size:34px; font-weight:900; letter-spacing:-1.2px; margin:0 0 16px; color:#0C0B1D; line-height:1.1; }
+  .ab-bh-p { font-size:16px; color:#5A5A7A; line-height:1.7; margin:0 0 28px; }
+  .ab-bh-bullets { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
+  .ab-bh-bullet { display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#5A5A7A; }
+  .ab-bh-widget { flex:1; background:#fff; border-radius:20px; border:1.5px solid #E8E4F4; padding:28px; box-shadow:0 16px 48px rgba(123,79,255,.12),0 2px 8px rgba(0,0,0,.06); }
+  .ab-bh-widget-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
+  .ab-bh-widget-title { font-size:13px; font-weight:700; color:#0C0B1D; }
+  .ab-bh-toggle { display:flex; background:#E8E4F4; border-radius:8px; padding:3px; gap:2px; }
+  .ab-bh-toggle-btn { font-size:11px; font-weight:600; padding:5px 10px; border-radius:6px; border:none; cursor:default; }
+  .ab-bh-toggle-active { background:#7B4FFF; color:#fff; }
+  .ab-bh-toggle-inactive { background:transparent; color:#9090B0; }
+  .ab-bh-table { width:100%; border-collapse:collapse; }
+  .ab-bh-table th { font-size:10px; font-weight:700; color:#9090B0; text-transform:uppercase; letter-spacing:.5px; padding:0 8px 10px; text-align:left; }
+  .ab-bh-table th:last-child { text-align:center; }
+  .ab-bh-table td { padding:6px 8px; border-top:1px solid #EEE9FF; }
+  .ab-bh-day { font-size:13px; font-weight:600; color:#0C0B1D; min-width:36px; display:inline-block; }
+  .ab-bh-time { background:#F8F7FF; border:1.5px solid #E8E4F4; border-radius:6px; font-size:12px; color:#0C0B1D; padding:5px 8px; width:64px; text-align:center; font-family:monospace; display:inline-block; }
+  .ab-bh-sep { font-size:12px; color:#B0B0C8; padding:0 4px; }
+  .ab-bh-check { width:16px; height:16px; accent-color:#7B4FFF; display:block; margin:0 auto; }
+  .ab-bh-closed { font-size:11px; color:#FF6B6B; font-weight:600; text-align:center; display:block; }
+  .ab-bh-schema { margin-top:16px; background:#F0ECF8; border-radius:10px; padding:12px 14px; font-size:11px; font-family:monospace; color:#5A5A7A; line-height:1.6; overflow:hidden; }
+  .ab-bh-schema-key { color:#7B4FFF; }
+  .ab-bh-schema-val { color:#1A9C50; }
   .ab-pricing { padding:96px 64px; background:#fff; }
   .ab-plan-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; align-items:start; }
   .ab-plan { border-radius:20px; padding:36px 28px; position:relative; }
@@ -122,6 +165,12 @@ const faqs = [
     .ab-features { padding:64px 20px; }
     .ab-feat-grid { grid-template-columns:1fr; }
     .ab-h2 { font-size:30px; }
+    .ab-site-types { padding:64px 20px; }
+    .ab-type-grid { grid-template-columns:repeat(2,1fr); }
+    .ab-bh { padding:64px 20px; }
+    .ab-bh-inner { flex-direction:column; gap:40px; }
+    .ab-bh-text { flex:none; width:100%; }
+    .ab-bh-h3 { font-size:26px; }
     .ab-pricing { padding:64px 20px; }
     .ab-plan-grid { grid-template-columns:1fr; max-width:400px; margin:0 auto; }
     .ab-plan-highlight { transform:scale(1); }
@@ -133,16 +182,9 @@ const faqs = [
     .ab-h1 { font-size:30px; }
     .ab-hero-btns { flex-direction:column; }
     .ab-btn-hero, .ab-btn-outline { width:100%; text-align:center; }
+    .ab-type-grid { grid-template-columns:1fr; }
   }
-
-    .ab-site-types { background:#fff; padding:96px 64px; border-top:1px solid #E8E4F4; border-bottom:1px solid #E8E4F4; }
-    .ab-type-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
-    .ab-type-card { background:#F8F7FF; border:1.5px solid #E8E4F4; border-radius:12px; padding:20px 16px; display:flex; flex-direction:column; align-items:flex-start; gap:8px; }
-    .ab-type-name { font-size:14px; font-weight:700; color:#0C0B1D; font-family:monospace; }
-    .ab-type-desc { font-size:12px; color:#5A5A7A; line-height:1.5; }
-    @media (max-width:900px) { .ab-site-types { padding:64px 20px; } .ab-type-grid { grid-template-columns:repeat(2,1fr); } }
-    @media (max-width:480px) { .ab-type-grid { grid-template-columns:1fr; } }
-  `
+`
 
 export function LandingPage() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -242,29 +284,102 @@ export function LandingPage() {
         </div>
       </section>
 
+      <section className="ab-site-types">
+        <div style={{ maxWidth:1200, margin:'0 auto' }}>
+          <div style={{ textAlign:'center', marginBottom:56 }}>
+            <h2 className="ab-h2">13 Schema types — built in</h2>
+            <p style={{ fontSize:17, color:'#5A5A7A', maxWidth:580, margin:'0 auto' }}>Every site type gets the exact structured data Google and AI engines expect. Pick your type in the plugin settings — all fields appear automatically.</p>
+          </div>
+          <div className="ab-type-grid">
+            {siteTypes.map(t => (
+              <div key={t.name} className="ab-type-card">
+                <div style={{ fontSize:28 }}>{t.icon}</div>
+                <div className="ab-type-name">{t.name}</div>
+                <div className="ab-type-desc">{t.desc}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign:'center', marginTop:40 }}>
+            <span style={{ fontSize:13, color:'#9090B0' }}>All 13 types available from Day 1 — no add-ons, no extra cost.</span>
+          </div>
+        </div>
+      </section>
 
-        <section className="ab-site-types">
-          <div style={{ maxWidth:1200, margin:'0 auto' }}>
-            <div style={{ textAlign:'center', marginBottom:56 }}>
-              <h2 className="ab-h2">13 Schema types — built in</h2>
-              <p style={{ fontSize:17, color:'#5A5A7A', maxWidth:580, margin:'0 auto' }}>Every site type gets the exact structured data Google and AI engines expect. Pick your type in the plugin settings — all fields appear automatically.</p>
-            </div>
-            <div className="ab-type-grid">
-              {siteTypes.map(t => (
-                <div key={t.name} className="ab-type-card">
-                  <div style={{ fontSize:28 }}>{t.icon}</div>
-                  <div className="ab-type-name">{t.name}</div>
-                  <div className="ab-type-desc">{t.desc}</div>
-                </div>
+      {/* BUSINESS HOURS SPOTLIGHT */}
+      <section className="ab-bh">
+        <div className="ab-bh-inner">
+          <div className="ab-bh-text">
+            <div className="ab-bh-pill">🕐 New in v0.26</div>
+            <h3 className="ab-bh-h3">
+              Set your opening hours{' '}
+              <span style={{ color:PURPLE }}>in seconds</span>
+            </h3>
+            <p className="ab-bh-p">
+              Our compact weekly table replaces 46 individual fields. Pick open/close times for each day — AI Boost generates proper <code style={{ background:'#F3F0FF', padding:'2px 6px', borderRadius:4, fontSize:14, color:PURPLE }}>openingHoursSpecification</code> Schema.org JSON-LD automatically.
+            </p>
+            <ul className="ab-bh-bullets">
+              {[
+                ['✓', 'One compact 7-row table instead of 46 separate fields'],
+                ['✓', 'All same hours or individual per day — one click toggle'],
+                ['✓', 'Mark any day as closed with a single checkbox'],
+                ['✓', 'Instant Schema.org output — no JSON editing needed'],
+              ].map(([mark, text]) => (
+                <li key={text} className="ab-bh-bullet">
+                  <span style={{ color:PURPLE, fontWeight:900, flexShrink:0 }}>{mark}</span>
+                  <span>{text}</span>
+                </li>
               ))}
+            </ul>
+          </div>
+          <div className="ab-bh-widget">
+            <div className="ab-bh-widget-header">
+              <span className="ab-bh-widget-title">Business Hours</span>
+              <div className="ab-bh-toggle">
+                <button className="ab-bh-toggle-btn ab-bh-toggle-inactive">All same</button>
+                <button className="ab-bh-toggle-btn ab-bh-toggle-active">Individual</button>
+              </div>
             </div>
-            <div style={{ textAlign:'center', marginTop:40 }}>
-              <span style={{ fontSize:13, color:'#9090B0' }}>All 13 types available from Day 1 — no add-ons, no extra cost.</span>
+            <table className="ab-bh-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th colSpan={3}>Hours</th>
+                  <th>Open</th>
+                </tr>
+              </thead>
+              <tbody>
+                {bhRows.map(row => (
+                  <tr key={row.day}>
+                    <td><span className="ab-bh-day">{row.day}</span></td>
+                    {row.isOpen ? (
+                      <>
+                        <td><span className="ab-bh-time">{row.open}</span></td>
+                        <td><span className="ab-bh-sep">–</span></td>
+                        <td><span className="ab-bh-time">{row.close}</span></td>
+                        <td><input type="checkbox" className="ab-bh-check" defaultChecked readOnly /></td>
+                      </>
+                    ) : (
+                      <>
+                        <td colSpan={3}><span className="ab-bh-closed">Closed</span></td>
+                        <td><input type="checkbox" className="ab-bh-check" readOnly /></td>
+                      </>
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <div className="ab-bh-schema">
+              <span className="ab-bh-schema-key">"openingHoursSpecification"</span>: [{'{'}<br />
+              &nbsp;&nbsp;<span className="ab-bh-schema-key">"@type"</span>: <span className="ab-bh-schema-val">"OpeningHoursSpecification"</span>,<br />
+              &nbsp;&nbsp;<span className="ab-bh-schema-key">"dayOfWeek"</span>: <span className="ab-bh-schema-val">"Monday"</span>,<br />
+              &nbsp;&nbsp;<span className="ab-bh-schema-key">"opens"</span>: <span className="ab-bh-schema-val">"09:00"</span>, <span className="ab-bh-schema-key">"closes"</span>: <span className="ab-bh-schema-val">"17:00"</span><br />
+              {'}'}, <span style={{ color:'#B0B0C8' }}>…6 more days</span> ]
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section id="pricing" className="ab-pricing">
+      <section id="pricing" className="ab-pricing">
         <div style={{ maxWidth:1200, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:64 }}>
             <h2 className="ab-h2">Simple pricing. Every feature, every license.</h2>
