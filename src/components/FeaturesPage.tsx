@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import logoSrc from '../assets/ai-boost-logo.svg'
@@ -172,6 +173,9 @@ const bhRows = [
 ]
 
 export function FeaturesPage() {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const close = () => setMenuOpen(false)
+
   const canonicalUrl = `${SITE_URL}/features`
   const pageTitle = 'Features — AI Boost for Joomla'
   const pageDescription = 'All features of AI Boost for Joomla: Schema.org JSON-LD, XML sitemap, hreflang, robots.txt, llms.txt, IndexNow, OpenGraph, GA4, Meta Pixel, 13 site type presets, 11 language packs, and business hours widget.'
@@ -222,8 +226,23 @@ export function FeaturesPage() {
           </div>
           <div className="ab-nav-cta">
             <Link to={CHECKOUT_URL} className="ab-btn-primary">Get AI Boost →</Link>
+            <button className="ab-hamburger" onClick={() => setMenuOpen(o => !o)} aria-label="Menu">
+              {menuOpen
+                ? <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                : <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+              }
+            </button>
           </div>
         </nav>
+      </div>
+
+      <div className={`ab-mobile-menu${menuOpen ? ' open' : ''}`}>
+        <Link to="/features" className="ab-mobile-link" onClick={close} style={{ color: PURPLE }}>Features</Link>
+        <Link to="/pricing"  className="ab-mobile-link" onClick={close}>Pricing</Link>
+        <Link to="/docs"     className="ab-mobile-link" onClick={close}>Docs</Link>
+        <Link to="/blog"     className="ab-mobile-link" onClick={close}>Blog</Link>
+        <Link to="/faq"      className="ab-mobile-link" onClick={close}>FAQ</Link>
+        <Link to={CHECKOUT_URL} className="ab-mobile-cta" onClick={close}>Get AI Boost →</Link>
       </div>
 
       {/* HERO */}
@@ -280,9 +299,10 @@ export function FeaturesPage() {
               <div className="ft-feat-title">FAQ Schema</div>
               <div className="ft-feat-desc">FAQPage schema generated two ways — auto-detect finds FAQ sections in your Joomla content, or enter questions manually in the plugin settings.</div>
               <ul className="ft-feat-bullets">
-                {['Auto-detection from page content', 'Manual FAQ entry (Developer+)', 'Applies to all pages or specific types', 'Google rich result eligible'].map(b => (
+                {['Auto-detection from page content', 'Applies to all pages or specific types', 'Google rich result eligible'].map(b => (
                   <li key={b} className="ft-feat-bullet"><span className="ft-feat-check">✓</span><span>{b}</span></li>
                 ))}
+                <li className="ft-feat-bullet"><span className="ft-feat-check">✓</span><span>Manual FAQ entry <span className="ft-pro-badge">Developer+</span></span></li>
               </ul>
             </div>
             <div className="ft-feat-card">
@@ -310,9 +330,10 @@ export function FeaturesPage() {
               <div className="ft-feat-title">Business Hours Widget</div>
               <div className="ft-feat-desc">Compact 7-row table replaces 46 individual fields. Set open/close times per day and generate <code style={{ background: '#F3F0FF', padding: '1px 5px', borderRadius: 4, fontSize: 13, color: PURPLE }}>openingHoursSpecification</code> JSON-LD instantly.</div>
               <ul className="ft-feat-bullets">
-                {['"All same hours" or individual per day', 'Mark any day as closed', 'Advanced Hours mode (Developer+)', 'Schema.org output auto-generated'].map(b => (
+                {['"All same hours" or individual per day', 'Mark any day as closed', 'Schema.org output auto-generated'].map(b => (
                   <li key={b} className="ft-feat-bullet"><span className="ft-feat-check">✓</span><span>{b}</span></li>
                 ))}
+                <li className="ft-feat-bullet"><span className="ft-feat-check">✓</span><span>Advanced Hours (multiple slots/day) <span className="ft-pro-badge">Developer+</span></span></li>
               </ul>
             </div>
             <div className="ft-feat-card">
