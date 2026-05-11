@@ -102,7 +102,7 @@ const siteTypes = [
   { icon: '🏪', name: 'LocalBusiness',             desc: 'General local service with address & hours', pro: false },
   { icon: '🍽️', name: 'Restaurant',                desc: 'Menu, cuisine, reservations, food schema', pro: false },
   { icon: '🏨', name: 'Hotel',                     desc: 'Amenities, check-in, room types, star rating', pro: false },
-  { icon: '❓', name: 'FAQPage',                   desc: 'Auto-detected Q&A or manual entry', pro: false },
+  { icon: '🏢', name: 'Organization',               desc: 'Generic organization: company, non-profit, brand', pro: false },
   { icon: '🏥', name: 'MedicalClinic',             desc: 'Specialty, accepting patients, opening hours', pro: true },
   { icon: '⚖️', name: 'LegalService',              desc: 'Practice areas, attorney, jurisdiction', pro: true },
   { icon: '🎓', name: 'EducationalOrganization',   desc: 'Courses, accreditation, campus info', pro: true },
