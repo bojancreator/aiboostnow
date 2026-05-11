@@ -14,7 +14,7 @@ body { margin: 0; }
 .ab-nav { display:flex; align-items:center; justify-content:space-between; padding:0 64px; height:88px; border-bottom:1px solid #E8E4F4; position:sticky; top:0; background:#fff; z-index:200; }
 .ab-nav-links { display:flex; align-items:center; gap:32px; }
 .ab-nav-link { color:#5A5A7A; font-size:15px; font-weight:500; text-decoration:none; }
-.ab-logo { height:68px; width:auto; display:block; }
+.ab-logo { height:88px; width:auto; display:block; }
 .ab-btn-primary { background:#7B4FFF; color:#fff; font-size:14px; font-weight:600; padding:11px 22px; border-radius:8px; text-decoration:none; white-space:nowrap; }
 .ab-footer { border-top:1px solid #E8E4F4; padding:40px 64px; display:flex; justify-content:space-between; align-items:center; background:#F8F7FF; flex-wrap:wrap; gap:16px; }
 .post-body h2 { font-size:24px; font-weight:800; margin:48px 0 16px; letter-spacing:-.5px; color:#0C0B1D; }
@@ -33,7 +33,7 @@ body { margin: 0; }
 @media (max-width:900px) {
   .ab-nav { padding:0 20px; height:64px; }
   .ab-nav-links { gap:16px; }
-  .ab-logo { height:48px; }
+  .ab-logo { height:64px; }
   .ab-footer { padding:32px 20px; flex-direction:column; align-items:flex-start; }
 }
 `
@@ -176,7 +176,7 @@ export function BlogPostPage() {
       </main>
 
       <footer className="ab-footer">
-        <Link to="/"><img src={logoSrc} style={{ height: 48, width: 'auto' }} alt="AI Boost" /></Link>
+        <Link to="/"><img src={logoSrc} style={{ height: 64, width: 'auto' }} alt="AI Boost" /></Link>
         <div style={{ fontSize: 13, color: '#9090B0' }}>© 2026 AI Boost · support@aiboostnow.com</div>
         <div style={{ display: 'flex', gap: 24 }}>
           <Link to="/blog" style={{ fontSize: 13, color: '#9090B0', textDecoration: 'none' }}>Blog</Link>
