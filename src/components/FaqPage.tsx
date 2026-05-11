@@ -71,6 +71,7 @@ export function FaqPage() {
         <div className="ab-nav-links">
           <Link to="/#features" className="ab-nav-link">Features</Link>
           <Link to="/#pricing" className="ab-nav-link">Pricing</Link>
+          <Link to="/docs" className="ab-nav-link">Docs</Link>
           <Link to="/blog" className="ab-nav-link">Blog</Link>
           <Link to="/faq" className="ab-nav-link" style={{ color: PURPLE, fontWeight: 700 }}>FAQ</Link>
           <a href={GUMROAD_DEV} target="_blank" rel="noopener noreferrer" className="ab-btn-primary">Get AI Boost →</a>
@@ -143,6 +144,8 @@ export function FaqPage() {
         <Link to="/"><img src={logoSrc} style={{ height: 54, width: 'auto' }} alt="AI Boost" /></Link>
         <div style={{ fontSize: 13, color: '#9090B0' }}>© 2026 AI Boost · support@aiboostnow.com</div>
         <div style={{ display: 'flex', gap: 24 }}>
+          <Link to="/pricing" style={{ fontSize: 13, color: '#9090B0', textDecoration: 'none' }}>Pricing</Link>
+          <Link to="/docs" style={{ fontSize: 13, color: '#9090B0', textDecoration: 'none' }}>Docs</Link>
           <Link to="/blog" style={{ fontSize: 13, color: '#9090B0', textDecoration: 'none' }}>Blog</Link>
           <Link to="/faq" style={{ fontSize: 13, color: '#9090B0', textDecoration: 'none' }}>FAQ</Link>
         </div>
