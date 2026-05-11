@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import logoSrc from '../assets/logo.png'
 import videoSrc from '../assets/hero-video.mp4'
 
@@ -193,6 +194,20 @@ export function LandingPage() {
 
   return (
     <div className="ab-wrap">
+      <Helmet>
+        <title>AI Boost for Joomla — Visible to AI Search</title>
+        <meta name="description" content="AI Boost for Joomla — Make your Joomla site visible to ChatGPT, Perplexity, and Google AI Overview. Schema.org, XML sitemap, llms.txt, IndexNow. Install in 5 minutes." />
+        <link rel="canonical" href="https://aiboostnow.com/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="AI Boost for Joomla — Visible to AI Search" />
+        <meta property="og:description" content="Make your Joomla site visible to ChatGPT, Perplexity, and Google AI Overview. Schema.org, XML sitemap, llms.txt, IndexNow. Install in 5 minutes." />
+        <meta property="og:url" content="https://aiboostnow.com/" />
+        <meta property="og:site_name" content="AI Boost" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="AI Boost for Joomla — Visible to AI Search" />
+        <meta name="twitter:description" content="Make your Joomla site visible to ChatGPT, Perplexity, and Google AI Overview. Schema.org, XML sitemap, llms.txt, IndexNow. Install in 5 minutes." />
+      </Helmet>
+
       <style>{css}</style>
 
       <nav className="ab-nav">
