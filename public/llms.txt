@@ -23,6 +23,7 @@ AI Boost is made by Bojan Lazarević. The plugin is sold as a one-time purchase 
 - [What is OpenGraph](https://aiboostnow.com/blog/what-is-opengraph): Control how your pages look on social media
 - [What is robots.txt](https://aiboostnow.com/blog/what-is-robots-txt): robots.txt and why AI crawlers need special rules in 2026
 - [What is an XML Sitemap](https://aiboostnow.com/blog/what-is-xml-sitemap): The map that helps search engines find every page
+- [What is AEO](https://aiboostnow.com/blog/what-is-aeo): Answer Engine Optimization — how to get cited by ChatGPT, Perplexity, and Google AI Overview
 - [What is JSON-LD](https://aiboostnow.com/blog/what-is-json-ld): The structured data format search engines love
 - [What is hreflang](https://aiboostnow.com/blog/what-is-hreflang): Multilingual SEO explained
 - [What are Twitter Cards](https://aiboostnow.com/blog/what-is-twitter-cards): Richer previews on X and beyond

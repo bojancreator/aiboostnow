@@ -201,13 +201,13 @@ export function LandingPage() {
         <meta property="og:description" content="Make your Joomla site visible to ChatGPT, Perplexity, and Google AI Overview. Schema.org, XML sitemap, llms.txt, IndexNow. Install in 5 minutes." />
         <meta property="og:url" content="https://aiboostnow.com/" />
         <meta property="og:site_name" content="AI Boost" />
-        <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
+        <meta property="og:image" content={`${SITE_URL}/og/home.png`} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="AI Boost for Joomla — Visible to AI Search" />
         <meta name="twitter:description" content="Make your Joomla site visible to ChatGPT, Perplexity, and Google AI Overview. Schema.org, XML sitemap, llms.txt, IndexNow. Install in 5 minutes." />
-        <meta name="twitter:image" content={`${SITE_URL}/og-image.png`} />
+        <meta name="twitter:image" content={`${SITE_URL}/og/home.png`} />
       </Helmet>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         '@context': 'https://schema.org',
@@ -215,12 +215,18 @@ export function LandingPage() {
         name: 'AI Boost',
         url: SITE_URL,
         contactPoint: { '@type': 'ContactPoint', email: 'support@aiboostnow.com', contactType: 'customer support' },
+        sameAs: [],
       }) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'WebSite',
         name: 'AI Boost',
         url: SITE_URL,
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: { '@type': 'EntryPoint', urlTemplate: `${SITE_URL}/blog?q={search_term_string}` },
+          'query-input': 'required name=search_term_string',
+        },
       }) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         '@context': 'https://schema.org',

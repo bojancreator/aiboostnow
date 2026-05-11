@@ -85,6 +85,7 @@ export function BlogPostPage() {
     headline: post.title,
     description: post.description,
     datePublished: post.date,
+    dateModified: post.date,
     author: { '@type': 'Organization', name: 'AI Boost', url: SITE_URL },
     publisher: { '@type': 'Organization', name: 'AI Boost', url: SITE_URL },
   }
@@ -102,13 +103,13 @@ export function BlogPostPage() {
         <meta property="og:description" content={post.description} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:site_name" content="AI Boost" />
-        <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
+        <meta property="og:image" content={`${SITE_URL}/og/${post.slug}.png`} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={post.description} />
-        <meta name="twitter:image" content={`${SITE_URL}/og-image.png`} />
+        <meta name="twitter:image" content={`${SITE_URL}/og/${post.slug}.png`} />
       </Helmet>
 
       <style>{css}</style>
@@ -119,6 +120,7 @@ export function BlogPostPage() {
         name: 'AI Boost',
         url: SITE_URL,
         contactPoint: { '@type': 'ContactPoint', email: 'support@aiboostnow.com', contactType: 'customer support' },
+        sameAs: [],
       }) }} />
 
       <nav className="ab-nav-bar">
@@ -126,7 +128,7 @@ export function BlogPostPage() {
           <Link to="/"><img src={logoSrc} className="ab-logo" alt="AI Boost" /></Link>
           <div className="ab-nav-links">
             <Link to="/features" className="ab-nav-link">Features</Link>
-            <Link to="/#pricing" className="ab-nav-link">Pricing</Link>
+            <Link to="/pricing" className="ab-nav-link">Pricing</Link>
             <Link to="/docs" className="ab-nav-link">Docs</Link>
             <Link to="/blog" className="ab-nav-link" style={{ color: PURPLE, fontWeight: 700 }}>Blog</Link>
             <Link to="/faq" className="ab-nav-link">FAQ</Link>

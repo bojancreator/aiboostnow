@@ -5,12 +5,10 @@ import logoSrc from '../assets/ai-boost-logo.svg'
 const PURPLE = '#7B4FFF'
 const SITE_URL = 'https://aiboostnow.com'
 
-const CHECKOUT_URL = '#'
-
 const plans = [
-  { name: 'Starter',   price: '€59',  sites: '1 site',         badge: null,           highlight: false, support: 'Email support',          url: CHECKOUT_URL },
-  { name: 'Developer', price: '€119', sites: '5 sites',        badge: 'Most Popular', highlight: true,  support: 'Priority email support', url: CHECKOUT_URL },
-  { name: 'Agency',    price: '€199', sites: 'Unlimited sites', badge: null,           highlight: false, support: 'Priority email support', url: CHECKOUT_URL },
+  { name: 'Starter',   price: '€59',  sites: '1 site',         badge: null,           highlight: false, support: 'Email support',          url: 'https://aiboostnow.gumroad.com/l/joomlaboost-starter' },
+  { name: 'Developer', price: '€119', sites: '5 sites',        badge: 'Most Popular', highlight: true,  support: 'Priority email support', url: 'https://aiboostnow.gumroad.com/l/joomlaboost-developer' },
+  { name: 'Agency',    price: '€199', sites: 'Unlimited sites', badge: null,           highlight: false, support: 'Priority email support', url: 'https://aiboostnow.gumroad.com/l/joomlaboost-agency' },
 ]
 
 const featureList = [
@@ -82,13 +80,13 @@ export function PricingPage() {
         <meta property="og:description" content={pageDescription} />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:site_name" content="AI Boost" />
-        <meta property="og:image" content={`${SITE_URL}/og-image.png`} />
+        <meta property="og:image" content={`${SITE_URL}/og/pricing.png`} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
-        <meta name="twitter:image" content={`${SITE_URL}/og-image.png`} />
+        <meta name="twitter:image" content={`${SITE_URL}/og/pricing.png`} />
       </Helmet>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         '@context': 'https://schema.org',
@@ -96,6 +94,7 @@ export function PricingPage() {
         name: 'AI Boost',
         url: SITE_URL,
         contactPoint: { '@type': 'ContactPoint', email: 'support@aiboostnow.com', contactType: 'customer support' },
+        sameAs: [],
       }) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
         '@context': 'https://schema.org',
