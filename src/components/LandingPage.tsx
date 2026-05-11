@@ -23,7 +23,8 @@ const feats = [
   { icon: '⚡', title: 'IndexNow',               desc: 'Instant URL submission to Bing, Yandex, and Seznam the moment you publish new content.' },
   { icon: '📊', title: 'Analytics Suite',        desc: 'GA4, Google Tag Manager, Google Search Console verification, Meta Pixel — all from one panel.' },
   { icon: '🌍', title: '11 Language Packs',      desc: 'Full admin UI in EN, DE, FR, ES, IT, RU, PT, ZH, AR, JA, SR. Multilingual custom fields too.' },
-]
+    { icon: '🕐', title: 'Business Hours',           desc: 'Compact 7-row weekly table — set opening hours in seconds. "All same" or "Individual days" toggle replaces 46 separate fields.' },
+  ]
 
 const featureList = [
   'All plugin features included',
@@ -46,7 +47,24 @@ const faqs = [
   { q: 'Can I upgrade my license later?',            a: 'Yes. Contact support@aiboostnow.com and we will arrange an upgrade at the price difference.' },
 ]
 
-const css = `
+
+  const siteTypes = [
+    { icon: '🏪', name: 'LocalBusiness',             desc: 'General local service with address & hours' },
+    { icon: '🍽️', name: 'Restaurant',                desc: 'Menu, cuisine, reservations, food schema' },
+    { icon: '🏨', name: 'Hotel',                     desc: 'Amenities, check-in, room types, star rating' },
+    { icon: '🏥', name: 'MedicalClinic',             desc: 'Specialty, accepting patients, opening hours' },
+    { icon: '⚖️', name: 'LegalService',             desc: 'Practice areas, attorney, jurisdiction' },
+    { icon: '🎓', name: 'EducationalOrganization',   desc: 'Courses, accreditation, campus info' },
+    { icon: '💪', name: 'HealthClub',                desc: 'Fitness amenities, membership, class schedules' },
+    { icon: '🦷', name: 'Dentist',                   desc: 'Dental specialty, insurance accepted, booking' },
+    { icon: '🏠', name: 'RealEstateAgent',           desc: 'Property listings, service area, contact' },
+    { icon: '👤', name: 'Person',                    desc: 'Portfolio, author, speaker, professional profile' },
+    { icon: '📰', name: 'NewsMediaOrganization',     desc: 'Publisher schema, editorial team, topics' },
+    { icon: '🎫', name: 'Event',                     desc: 'Date, venue, ticket link, performer schema' },
+    { icon: '❓', name: 'FAQPage',                   desc: 'Auto-detected questions & answers on every page' },
+  ]
+
+  const css = `
   * { box-sizing: border-box; }
   body { margin: 0; }
   .ab-wrap { font-family: 'Inter', system-ui, sans-serif; background: #fff; color: #0C0B1D; overflow-x: hidden; }
@@ -116,7 +134,15 @@ const css = `
     .ab-hero-btns { flex-direction:column; }
     .ab-btn-hero, .ab-btn-outline { width:100%; text-align:center; }
   }
-`
+
+    .ab-site-types { background:#fff; padding:96px 64px; border-top:1px solid #E8E4F4; border-bottom:1px solid #E8E4F4; }
+    .ab-type-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+    .ab-type-card { background:#F8F7FF; border:1.5px solid #E8E4F4; border-radius:12px; padding:20px 16px; display:flex; flex-direction:column; align-items:flex-start; gap:8px; }
+    .ab-type-name { font-size:14px; font-weight:700; color:#0C0B1D; font-family:monospace; }
+    .ab-type-desc { font-size:12px; color:#5A5A7A; line-height:1.5; }
+    @media (max-width:900px) { .ab-site-types { padding:64px 20px; } .ab-type-grid { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:480px) { .ab-type-grid { grid-template-columns:1fr; } }
+  `
 
 export function LandingPage() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -130,7 +156,6 @@ export function LandingPage() {
         <img src={logoSrc} className="ab-logo" alt="AI Boost" />
         <div className="ab-nav-links">
           <a href="#features" className="ab-nav-link">Features</a>
-          <a href="#docs"     className="ab-nav-link">Docs</a>
           <a href="#pricing"  className="ab-nav-link">Pricing</a>
           <a href={GUMROAD.developer} target="_blank" rel="noopener noreferrer" className="ab-btn-primary">Get AI Boost →</a>
         </div>
@@ -144,7 +169,6 @@ export function LandingPage() {
 
       <div className={`ab-mobile-menu${menuOpen ? ' open' : ''}`}>
         <a href="#features" className="ab-mobile-link" onClick={close}>Features</a>
-        <a href="#docs"     className="ab-mobile-link" onClick={close}>Docs</a>
         <a href="#pricing"  className="ab-mobile-link" onClick={close}>Pricing</a>
         <a href={GUMROAD.developer} target="_blank" rel="noopener noreferrer" className="ab-mobile-cta" onClick={close}>Get AI Boost →</a>
       </div>
@@ -218,7 +242,29 @@ export function LandingPage() {
         </div>
       </section>
 
-      <section id="pricing" className="ab-pricing">
+
+        <section className="ab-site-types">
+          <div style={{ maxWidth:1200, margin:'0 auto' }}>
+            <div style={{ textAlign:'center', marginBottom:56 }}>
+              <h2 className="ab-h2">13 Schema types — built in</h2>
+              <p style={{ fontSize:17, color:'#5A5A7A', maxWidth:580, margin:'0 auto' }}>Every site type gets the exact structured data Google and AI engines expect. Pick your type in the plugin settings — all fields appear automatically.</p>
+            </div>
+            <div className="ab-type-grid">
+              {siteTypes.map(t => (
+                <div key={t.name} className="ab-type-card">
+                  <div style={{ fontSize:28 }}>{t.icon}</div>
+                  <div className="ab-type-name">{t.name}</div>
+                  <div className="ab-type-desc">{t.desc}</div>
+                </div>
+              ))}
+            </div>
+            <div style={{ textAlign:'center', marginTop:40 }}>
+              <span style={{ fontSize:13, color:'#9090B0' }}>All 13 types available from Day 1 — no add-ons, no extra cost.</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="pricing" className="ab-pricing">
         <div style={{ maxWidth:1200, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:64 }}>
             <h2 className="ab-h2">Simple pricing. Every feature, every license.</h2>
