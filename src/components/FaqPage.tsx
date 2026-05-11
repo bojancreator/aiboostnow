@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import logoSrc from '../assets/logo.png'
 import { faqGroups } from '../data/faqData'
 
 const PURPLE = '#7B4FFF'
 const GUMROAD_DEV = 'https://aiboostnow.gumroad.com/l/joomlaboost'
+const SITE_URL = 'https://aiboostnow.com'
 
 const css = `
 * { box-sizing: border-box; }
@@ -29,6 +31,10 @@ export function FaqPage() {
 
   const toggle = (key: string) => setOpen(o => o === key ? null : key)
 
+  const canonicalUrl = `${SITE_URL}/faq`
+  const pageTitle = 'FAQ — AI Boost for Joomla'
+  const pageDescription = 'Frequently asked questions about AI Boost for Joomla — installation, features, pricing, licensing, and technical details. Everything you need before purchasing.'
+
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -43,6 +49,20 @@ export function FaqPage() {
 
   return (
     <div className="ab-wrap">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:site_name" content="AI Boost" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+      </Helmet>
+
       <style>{css}</style>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 

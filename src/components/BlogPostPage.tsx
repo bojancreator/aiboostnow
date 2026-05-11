@@ -1,9 +1,11 @@
 import { useParams, Link, Navigate } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import logoSrc from '../assets/logo.png'
 import { getBlogPost, blogPosts } from '../data/blogPosts'
 
 const PURPLE = '#7B4FFF'
 const GUMROAD_DEV = 'https://aiboostnow.gumroad.com/l/joomlaboost'
+const SITE_URL = 'https://aiboostnow.com'
 
 const css = `
 * { box-sizing: border-box; }
@@ -72,20 +74,37 @@ export function BlogPostPage() {
 
   if (!post) return <Navigate to="/blog" replace />
 
+  const canonicalUrl = `${SITE_URL}/blog/${post.slug}`
+  const pageTitle = `${post.title} | AI Boost Blog`
+
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: post.title,
     description: post.description,
     datePublished: post.date,
-    author: { '@type': 'Organization', name: 'AI Boost', url: 'https://aiboostnow.com' },
-    publisher: { '@type': 'Organization', name: 'AI Boost', url: 'https://aiboostnow.com' },
+    author: { '@type': 'Organization', name: 'AI Boost', url: SITE_URL },
+    publisher: { '@type': 'Organization', name: 'AI Boost', url: SITE_URL },
   }
 
   const related = blogPosts.filter(p => p.slug !== post.slug && p.tags.some(t => post.tags.includes(t))).slice(0, 3)
 
   return (
     <div className="ab-wrap">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={post.description} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={post.description} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:site_name" content="AI Boost" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={post.description} />
+      </Helmet>
+
       <style>{css}</style>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
 

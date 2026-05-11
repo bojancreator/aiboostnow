@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import logoSrc from '../assets/logo.png'
 import { blogPosts, getAllTags } from '../data/blogPosts'
 
 const PURPLE = '#7B4FFF'
 const GUMROAD_DEV = 'https://aiboostnow.gumroad.com/l/joomlaboost'
+const SITE_URL = 'https://aiboostnow.com'
 
 const css = `
 * { box-sizing: border-box; }
@@ -29,8 +31,26 @@ export function BlogListPage() {
   const allTags = getAllTags()
   const filtered = activeTag ? blogPosts.filter(p => p.tags.includes(activeTag)) : blogPosts
 
+  const canonicalUrl = `${SITE_URL}/blog`
+  const pageTitle = 'Blog — AI Boost'
+  const pageDescription = 'Guides on Schema.org, AI search, structured data, and everything that makes Joomla sites visible in 2026. Written by the team behind AI Boost for Joomla.'
+
   return (
     <div className="ab-wrap">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:site_name" content="AI Boost" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+      </Helmet>
+
       <style>{css}</style>
 
       <nav className="ab-nav">
