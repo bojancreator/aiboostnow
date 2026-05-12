@@ -30,9 +30,9 @@ const paidFeatures = [
 ]
 
 const plans = [
-  { name: 'Free',         price: '€0',   period: null,    sites: '1 site',          badge: null,           highlight: false, url: '/docs/getting-started', btnLabel: 'Download Free →',   features: freeFeatures },
-  { name: 'Basic',        price: '€45',  period: '/year', sites: '1 license',        badge: null,           highlight: false, url: 'https://aiboostnow.gumroad.com/l/joomlaboost-basic',        btnLabel: 'Get Basic →',       features: paidFeatures },
-  { name: 'Professional', price: '€200', period: '/year', sites: '10 licenses',      badge: 'Most Popular', highlight: true,  url: 'https://aiboostnow.gumroad.com/l/joomlaboost-professional', btnLabel: 'Get Professional →', features: paidFeatures },
+  { name: 'Free',         price: '€0',   period: null,    sites: '1 website',       badge: null,           highlight: false, url: '/docs/getting-started', btnLabel: 'Download Free →',   features: freeFeatures },
+  { name: 'Basic',        price: '€45',  period: '/year', sites: '1 website',        badge: null,           highlight: false, url: 'https://aiboostnow.gumroad.com/l/joomlaboost-basic',        btnLabel: 'Get Basic →',       features: paidFeatures },
+  { name: 'Professional', price: '€200', period: '/year', sites: '10 websites',      badge: 'Most Popular', highlight: true,  url: 'https://aiboostnow.gumroad.com/l/joomlaboost-professional', btnLabel: 'Get Professional →', features: paidFeatures },
 ]
 
 const faqs = [
