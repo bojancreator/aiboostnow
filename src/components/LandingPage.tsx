@@ -245,9 +245,8 @@ export function LandingPage() {
         applicationCategory: 'BusinessApplication',
         operatingSystem: 'Joomla 4, Joomla 5, Joomla 6',
         offers: [
-          { '@type': 'Offer', name: 'Basic',        price: '59.00',  priceCurrency: 'EUR', priceSpecification: { '@type': 'UnitPriceSpecification', price: '59.00',  priceCurrency: 'EUR', unitCode: 'ANN' }, availability: 'https://schema.org/InStock' },
-          { '@type': 'Offer', name: 'Professional', price: '119.00', priceCurrency: 'EUR', priceSpecification: { '@type': 'UnitPriceSpecification', price: '119.00', priceCurrency: 'EUR', unitCode: 'ANN' }, availability: 'https://schema.org/InStock' },
-          { '@type': 'Offer', name: 'Agency',       price: '199.00', priceCurrency: 'EUR', priceSpecification: { '@type': 'UnitPriceSpecification', price: '199.00', priceCurrency: 'EUR', unitCode: 'ANN' }, availability: 'https://schema.org/InStock' },
+          { '@type': 'Offer', name: 'Basic',        price: '45.00',  priceCurrency: 'EUR', priceSpecification: { '@type': 'UnitPriceSpecification', price: '45.00',  priceCurrency: 'EUR', unitCode: 'ANN' }, availability: 'https://schema.org/InStock' },
+          { '@type': 'Offer', name: 'Professional', price: '200.00', priceCurrency: 'EUR', priceSpecification: { '@type': 'UnitPriceSpecification', price: '200.00', priceCurrency: 'EUR', unitCode: 'ANN' }, availability: 'https://schema.org/InStock' },
         ],
       }) }} />
 
@@ -298,7 +297,7 @@ export function LandingPage() {
             AI Boost for Joomla generates Schema.org, XML sitemap, llms.txt, and AI crawler signals — so ChatGPT, Perplexity, and Google AI Overview recommend your site. Install in 5 minutes. No coding.
           </p>
           <div className="ab-hero-btns">
-            <Link to="/pricing" className="ab-btn-hero">Get Professional — €119/year</Link>
+            <Link to="/pricing" className="ab-btn-hero">Get Professional — €200/year</Link>
             <Link to="/features" className="ab-btn-outline">View all features ↓</Link>
           </div>
           <div style={{ display:'flex', flexWrap:'wrap', gap:'12px 28px' }}>
