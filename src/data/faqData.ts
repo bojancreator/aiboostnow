@@ -72,7 +72,7 @@ export const faqGroups: FaqGroup[] = [
       },
       {
         q: 'What is llms.txt and do all sites need it?',
-        a: 'llms.txt is a plain text file (served at yoursite.com/llms.txt) that describes your site\'s structure and key pages in a format optimised for AI assistants like ChatGPT and Perplexity. Sites that want to be accurately cited by AI search engines benefit from it. It is not required for basic SEO, but for any site targeting AI-driven discovery in 2025–2026, it is a meaningful signal. AI Boost for Joomla generates it dynamically on the Developer and Agency plans.',
+        a: 'llms.txt is a plain text file (served at yoursite.com/llms.txt) that describes your site\'s structure and key pages in a format optimised for AI assistants like ChatGPT and Perplexity. Sites that want to be accurately cited by AI search engines benefit from it. It is not required for basic SEO, but for any site targeting AI-driven discovery in 2025–2026, it is a meaningful signal. AI Boost for Joomla generates it dynamically on the Professional and Agency plans.',
       },
       {
         q: 'How does the IndexNow integration work?',
@@ -98,23 +98,23 @@ export const faqGroups: FaqGroup[] = [
     items: [
       {
         q: 'How much does AI Boost for Joomla cost?',
-        a: 'AI Boost for Joomla is available in three tiers: Starter at €59 (1 site), Developer at €119 (5 sites), and Agency at €199 (unlimited sites). All are one-time payments — no subscriptions. EU VAT is handled automatically at checkout.',
+        a: 'AI Boost for Joomla is available in three tiers: Free (limited features, 1 site), Basic at €45/year (1 license), and Professional at €200/year (10 licenses). Payments are processed by Gumroad, which handles EU VAT automatically.',
       },
       {
-        q: 'What are the differences between Starter, Developer, and Agency?',
-        a: 'The primary difference is the number of sites: Starter covers 1 site, Developer covers 5 sites, Agency covers unlimited sites. Developer and Agency also unlock advanced features: the 8 specialised Site Type presets (Medical, Law Firm, School, Gym, Dentist, Real Estate, Portfolio, News), Advanced Opening Hours (day-by-day schedules, seasonal hours, holiday closures), Manual FAQ editor, Events Schema, IndexNow, and llms.txt generation.',
+        q: 'What does the annual subscription include?',
+        a: 'Your subscription covers the plugin, all updates and new features released during the year, and access to our support. When your year ends, the plugin continues to work on its installed version — you only need to renew if you want new updates and continued support.',
       },
       {
-        q: 'Is this a one-time purchase or a subscription?',
-        a: 'One-time purchase. You pay once and own the plugin forever. The purchase includes 1 year of updates and bug fixes. After 1 year, the plugin continues to work — you just do not receive new feature updates unless you optionally renew your update plan at 50% of the original price.',
+        q: 'What does the Free plan include?',
+        a: 'The Free plan includes core SEO features: Schema.org for Organization and LocalBusiness, an XML sitemap, basic robots.txt, and OpenGraph + Twitter Card tags. Paid plans (Basic and Professional) unlock all 20+ schema types, 13 site type presets, Advanced Business Hours, llms.txt generator, IndexNow, the full analytics suite, and professional support.',
       },
       {
-        q: 'Does the plugin stop working if I do not renew my license?',
-        a: 'No. The plugin continues to work on its installed version indefinitely, regardless of renewal. Renewal gives you access to new versions and new features released after your first year. Your existing installation is not locked, disabled, or degraded.',
+        q: 'What is the difference between Basic and Professional?',
+        a: 'Both plans include every plugin feature. The difference is the number of licenses: Basic covers 1 site, Professional covers 10 sites.',
       },
       {
         q: 'Which plan do I need if I manage multiple client sites?',
-        a: 'If you manage up to 5 client sites, the Developer plan (€119) covers you. For more than 5 client sites, the Agency plan (€199 unlimited) is the right choice. Both Developer and Agency include priority email support.',
+        a: 'If you manage up to 10 client sites, the Professional plan (€200/year) covers you. For a single site, Basic (€45/year) is the right choice.',
       },
     ],
   },

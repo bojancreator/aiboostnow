@@ -9,9 +9,9 @@ const SITE_URL = 'https://aiboostnow.com'
 const CHECKOUT_URL = '/pricing'
 
 const plans = [
-  { name: 'Starter',   price: '€59',  sites: '1 site',          badge: null,           highlight: false, support: 'Email support',          url: CHECKOUT_URL },
-  { name: 'Developer', price: '€119', sites: '5 sites',         badge: 'Most Popular', highlight: true,  support: 'Priority email support', url: CHECKOUT_URL },
-  { name: 'Agency',    price: '€199', sites: 'Unlimited sites',  badge: null,           highlight: false, support: 'Priority email support', url: CHECKOUT_URL },
+  { name: 'Free',         price: '€0',   period: null,    sites: '1 site',    badge: null,           highlight: false, url: '/docs/getting-started' },
+  { name: 'Basic',        price: '€45',  period: '/year', sites: '1 license', badge: null,           highlight: false, url: CHECKOUT_URL },
+  { name: 'Professional', price: '€200', period: '/year', sites: '10 licenses', badge: 'Most Popular', highlight: true,  url: CHECKOUT_URL },
 ]
 
 const feats = [
@@ -37,14 +37,23 @@ const featureList = [
   'GA4, GTM, Meta Pixel',
   '13 Site Type Presets',
   '11 language packs',
-  '1 year of updates & bug fixes',
+  'Updates & support included',
+]
+
+const freeList = [
+  'Schema.org (Organization, LocalBusiness)',
+  'XML Sitemap (basic)',
+  'robots.txt (basic rules)',
+  'OpenGraph + Twitter Cards',
+  'Google Analytics 4',
+  'Community support (forum)',
 ]
 
 const faqs = [
-  { q: 'What does "one-time payment" mean?',         a: 'You pay once and own the plugin forever. Updates are included for 1 year. After that, the plugin keeps working — renewal is optional.' },
+  { q: 'What does the annual subscription include?', a: 'Your subscription covers the plugin, all updates and new features released during the year, and access to our support. When your year ends, the plugin keeps working — renewal is optional.' },
   { q: 'Is it compatible with Joomla 4, 5, and 6?', a: 'Yes. AI Boost for Joomla supports Joomla 4.0 through 6.x with PHP 8.1 through 8.5.' },
-  { q: 'Is there a free trial?',                     a: 'No free trial, but every purchase has a 30-day money-back guarantee. If it does not work, we refund you in full.' },
-  { q: 'Can I upgrade my license later?',            a: 'Yes. Contact support@aiboostnow.com and we will arrange an upgrade at the price difference.' },
+  { q: 'Is there a free version?',                   a: 'Yes. The Free plan includes core SEO features: Schema.org for Organization and LocalBusiness, an XML sitemap, basic robots.txt, and OpenGraph tags. Basic and Professional plans unlock all 20+ schema types, llms.txt, IndexNow, and the full analytics suite.' },
+  { q: 'Can I upgrade from Basic to Professional?',  a: 'Yes. Contact support@aiboostnow.com and we will arrange an upgrade at the price difference.' },
 ]
 
 const siteTypes = [
@@ -140,8 +149,9 @@ const css = `
   .ab-bh-schema-key { color:#7B4FFF; }
   .ab-bh-schema-val { color:#1A9C50; }
   .ab-pricing { padding:96px 64px; background:#fff; }
-  .ab-plan-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; align-items:start; }
-  .ab-plan { border-radius:20px; padding:36px 28px; position:relative; }
+  .ab-plan-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; align-items:start; max-width:960px; margin:0 auto; }
+  .ab-plan { border-radius:20px; padding:32px 28px; position:relative; }
+  .ab-plan-free { background:#F8F7FF; border:1.5px solid #E8E4F4; }
   .ab-plan-normal { background:#fff; border:1.5px solid #E8E4F4; box-shadow:0 2px 12px rgba(0,0,0,.05); }
   .ab-plan-highlight { background:#7B4FFF; box-shadow:0 12px 48px rgba(123,79,255,.35); transform:scale(1.04); }
   .ab-plan-btn { display:block; text-align:center; padding:13px 0; font-weight:700; font-size:14px; border-radius:10px; text-decoration:none; }
@@ -172,7 +182,7 @@ const css = `
     .ab-bh-text { flex:none; width:100%; }
     .ab-bh-h3 { font-size:26px; }
     .ab-pricing { padding:64px 20px; }
-    .ab-plan-grid { grid-template-columns:1fr; max-width:400px; margin:0 auto; }
+    .ab-plan-grid { grid-template-columns:1fr !important; max-width:400px; }
     .ab-plan-highlight { transform:scale(1); }
     .ab-faq { padding:64px 20px; }
     .ab-cta { padding:64px 20px; }
@@ -235,9 +245,9 @@ export function LandingPage() {
         applicationCategory: 'BusinessApplication',
         operatingSystem: 'Joomla 4, Joomla 5, Joomla 6',
         offers: [
-          { '@type': 'Offer', name: 'Starter',   price: '59.00',  priceCurrency: 'EUR', availability: 'https://schema.org/InStock' },
-          { '@type': 'Offer', name: 'Developer', price: '119.00', priceCurrency: 'EUR', availability: 'https://schema.org/InStock' },
-          { '@type': 'Offer', name: 'Agency',    price: '199.00', priceCurrency: 'EUR', availability: 'https://schema.org/InStock' },
+          { '@type': 'Offer', name: 'Basic',        price: '59.00',  priceCurrency: 'EUR', priceSpecification: { '@type': 'UnitPriceSpecification', price: '59.00',  priceCurrency: 'EUR', unitCode: 'ANN' }, availability: 'https://schema.org/InStock' },
+          { '@type': 'Offer', name: 'Professional', price: '119.00', priceCurrency: 'EUR', priceSpecification: { '@type': 'UnitPriceSpecification', price: '119.00', priceCurrency: 'EUR', unitCode: 'ANN' }, availability: 'https://schema.org/InStock' },
+          { '@type': 'Offer', name: 'Agency',       price: '199.00', priceCurrency: 'EUR', priceSpecification: { '@type': 'UnitPriceSpecification', price: '199.00', priceCurrency: 'EUR', unitCode: 'ANN' }, availability: 'https://schema.org/InStock' },
         ],
       }) }} />
 
@@ -288,7 +298,7 @@ export function LandingPage() {
             AI Boost for Joomla generates Schema.org, XML sitemap, llms.txt, and AI crawler signals — so ChatGPT, Perplexity, and Google AI Overview recommend your site. Install in 5 minutes. No coding.
           </p>
           <div className="ab-hero-btns">
-            <Link to="/pricing" className="ab-btn-hero">Buy Developer — €119</Link>
+            <Link to="/pricing" className="ab-btn-hero">Get Professional — €119/year</Link>
             <Link to="/features" className="ab-btn-outline">View all features ↓</Link>
           </div>
           <div style={{ display:'flex', flexWrap:'wrap', gap:'12px 28px' }}>
@@ -442,29 +452,39 @@ export function LandingPage() {
         <div style={{ maxWidth:1200, margin:'0 auto' }}>
           <div style={{ textAlign:'center', marginBottom:64 }}>
             <h2 className="ab-h2">Simple pricing. Every feature, every license.</h2>
-            <p style={{ fontSize:17, color:'#5A5A7A' }}>Pay once, use forever. 30-day money-back guarantee.</p>
+            <p style={{ fontSize:17, color:'#5A5A7A' }}>Annual subscription includes the plugin, all updates, and support.</p>
           </div>
           <div className="ab-plan-grid">
             {plans.map(plan => (
-              <div key={plan.name} className={`ab-plan ${plan.highlight ? 'ab-plan-highlight' : 'ab-plan-normal'}`}>
+              <div key={plan.name} className={`ab-plan ${plan.highlight ? 'ab-plan-highlight' : plan.name === 'Free' ? 'ab-plan-free' : 'ab-plan-normal'}`}>
                 {plan.badge && (
                   <div style={{ position:'absolute', top:-14, left:'50%', transform:'translateX(-50%)', background:'#0C0B1D', color:'#fff', fontSize:11, fontWeight:700, padding:'4px 16px', borderRadius:100, whiteSpace:'nowrap' }}>{plan.badge}</div>
                 )}
                 <div style={{ fontSize:13, fontWeight:700, color:plan.highlight ? 'rgba(255,255,255,.65)' : '#9090B0', textTransform:'uppercase', letterSpacing:1, marginBottom:8 }}>{plan.name}</div>
-                <div style={{ display:'flex', alignItems:'baseline', gap:6, marginBottom:4 }}>
-                  <span style={{ fontSize:48, fontWeight:900, letterSpacing:'-2px', color:plan.highlight ? '#fff' : '#0C0B1D' }}>{plan.price}</span>
-                  <span style={{ fontSize:13, color:plan.highlight ? 'rgba(255,255,255,.5)' : '#B0B0C8' }}>one-time</span>
+                <div style={{ display:'flex', alignItems:'baseline', gap:4, marginBottom:4 }}>
+                  <span style={{ fontSize:42, fontWeight:900, letterSpacing:'-2px', color:plan.highlight ? '#fff' : '#0C0B1D' }}>{plan.price}</span>
+                  {plan.period && (
+                    <span style={{ fontSize:13, color:plan.highlight ? 'rgba(255,255,255,.5)' : '#B0B0C8' }}>{plan.period}</span>
+                  )}
                 </div>
-                <div style={{ fontSize:12, color:plan.highlight ? 'rgba(255,255,255,.4)' : '#B0B0C8', marginBottom:16 }}>+VAT where applicable</div>
-                <div style={{ fontSize:14, color:plan.highlight ? 'rgba(255,255,255,.75)' : '#5A5A7A', marginBottom:28 }}>{plan.sites} · {plan.support}</div>
-                <a href={plan.url} target="_blank" rel="noopener noreferrer" className="ab-plan-btn" style={{ background:plan.highlight ? '#fff' : PURPLE, color:plan.highlight ? PURPLE : '#fff' }}>
-                  Buy {plan.name} — {plan.price}
-                </a>
+                <div style={{ fontSize:12, color:plan.highlight ? 'rgba(255,255,255,.4)' : '#B0B0C8', marginBottom:16 }}>
+                  {plan.name === 'Free' ? 'always free' : '+VAT where applicable'}
+                </div>
+                <div style={{ fontSize:13, color:plan.highlight ? 'rgba(255,255,255,.75)' : '#5A5A7A', marginBottom:20 }}>{plan.sites}</div>
+                {plan.name === 'Free' ? (
+                  <Link to={plan.url} className="ab-plan-btn" style={{ background:'#E8E4F4', color:'#5A5A7A' }}>
+                    Download Free →
+                  </Link>
+                ) : (
+                  <Link to={plan.url} className="ab-plan-btn" style={{ background:plan.highlight ? '#fff' : PURPLE, color:plan.highlight ? PURPLE : '#fff' }}>
+                    Get {plan.name} →
+                  </Link>
+                )}
                 <div style={{ borderTop:`1px solid ${plan.highlight ? 'rgba(255,255,255,.2)' : '#F0ECF8'}`, marginTop:24, paddingTop:24 }}>
                   <ul className="ab-feat-list">
-                    {featureList.map(f => (
+                    {(plan.name === 'Free' ? freeList : featureList).map(f => (
                       <li key={f} className="ab-feat-item">
-                        <span style={{ color:plan.highlight ? 'rgba(255,255,255,.85)' : PURPLE, fontWeight:900, fontSize:14, marginTop:1, flexShrink:0 }}>✓</span>
+                        <span style={{ color:plan.highlight ? 'rgba(255,255,255,.85)' : plan.name === 'Free' ? '#9090B0' : PURPLE, fontWeight:900, fontSize:14, marginTop:1, flexShrink:0 }}>✓</span>
                         <span style={{ fontSize:13, color:plan.highlight ? 'rgba(255,255,255,.8)' : '#5A5A7A' }}>{f}</span>
                       </li>
                     ))}
@@ -474,7 +494,7 @@ export function LandingPage() {
             ))}
           </div>
           <div style={{ textAlign:'center', marginTop:40, fontSize:14, color:'#9090B0' }}>
-            🛡️ 30-day money-back guarantee &nbsp;·&nbsp; EU VAT handled automatically
+            EU VAT handled automatically at checkout
           </div>
         </div>
       </section>
@@ -498,8 +518,8 @@ export function LandingPage() {
         </h2>
         <p style={{ fontSize:18, color:'#5A5A7A', marginBottom:48 }}>Install in 5 minutes. No coding. No JSON editing.</p>
         <div style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
-          <Link to="/pricing" style={{ background:PURPLE, color:'#fff', fontSize:17, fontWeight:700, padding:'18px 36px', borderRadius:12, textDecoration:'none', boxShadow:'0 4px 24px rgba(123,79,255,.35)' }}>Buy Developer — €119</Link>
-          <Link to="/pricing" style={{ color:'#9090B0', fontSize:17, fontWeight:500, padding:'18px 0', textDecoration:'underline' }}>Or start with Starter for €59</Link>
+          <Link to="/pricing" style={{ background:PURPLE, color:'#fff', fontSize:17, fontWeight:700, padding:'18px 36px', borderRadius:12, textDecoration:'none', boxShadow:'0 4px 24px rgba(123,79,255,.35)' }}>Get Professional — €200/year</Link>
+          <Link to="/pricing" style={{ color:'#9090B0', fontSize:17, fontWeight:500, padding:'18px 0', textDecoration:'underline' }}>Or start with Basic for €45/year</Link>
         </div>
       </section>
 

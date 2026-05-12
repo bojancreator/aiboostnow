@@ -310,12 +310,12 @@ export function FeaturesPage() {
                 {['Auto-detection from page content', 'Applies to all pages or specific types', 'Google rich result eligible'].map(b => (
                   <li key={b} className="ft-feat-bullet"><span className="ft-feat-check">✓</span><span>{b}</span></li>
                 ))}
-                <li className="ft-feat-bullet"><span className="ft-feat-check">✓</span><span>Manual FAQ entry <span className="ft-pro-badge">Developer+</span></span></li>
+                <li className="ft-feat-bullet"><span className="ft-feat-check">✓</span><span>Manual FAQ entry <span className="ft-pro-badge">Professional+</span></span></li>
               </ul>
             </div>
             <div className="ft-feat-card">
               <div className="ft-feat-icon">🎫</div>
-              <div className="ft-feat-title">Event Schema <span className="ft-pro-badge">Developer+</span></div>
+              <div className="ft-feat-title">Event Schema <span className="ft-pro-badge">Professional+</span></div>
               <div className="ft-feat-desc">Full Event schema with date, location, ticket URL, performer, organiser, and event status. Makes your events appear in Google's event carousel.</div>
               <ul className="ft-feat-bullets">
                 {['Start/end date & time', 'Event location (virtual or physical)', 'Ticket URL & offer price', 'Organiser & performer schema'].map(b => (
@@ -341,7 +341,7 @@ export function FeaturesPage() {
                 {['"All same hours" or individual per day', 'Mark any day as closed', 'Schema.org output auto-generated'].map(b => (
                   <li key={b} className="ft-feat-bullet"><span className="ft-feat-check">✓</span><span>{b}</span></li>
                 ))}
-                <li className="ft-feat-bullet"><span className="ft-feat-check">✓</span><span>Advanced Hours (multiple slots/day) <span className="ft-pro-badge">Developer+</span></span></li>
+                <li className="ft-feat-bullet"><span className="ft-feat-check">✓</span><span>Advanced Hours (multiple slots/day) <span className="ft-pro-badge">Professional+</span></span></li>
               </ul>
             </div>
             <div className="ft-feat-card">
@@ -381,7 +381,7 @@ export function FeaturesPage() {
           <div style={{ textAlign: 'center', marginTop: 32 }}>
             <span style={{ fontSize: 13, color: '#9090B0' }}>
               Basic types (LocalBusiness, Restaurant, Hotel, FAQPage) available on all plans. 
-              Specialised types require Developer or Agency license.
+              Specialised types require Professional or Agency license.
             </span>
           </div>
         </div>
@@ -394,7 +394,7 @@ export function FeaturesPage() {
             <div className="ft-two-col-text">
               <div className="ft-pill">🕐 Business Hours</div>
               <h2>Set your opening hours <span style={{ color: PURPLE }}>in seconds</span></h2>
-              <p>Our compact weekly table replaces 46 individual fields from old implementations. One click to set all days the same, or configure each day individually — including advanced time slots for Developer and Agency license holders.</p>
+              <p>Our compact weekly table replaces 46 individual fields from old implementations. One click to set all days the same, or configure each day individually — including advanced time slots for Professional and Agency license holders.</p>
               <ul className="ft-two-col-bullets">
                 {[
                   ['One compact 7-row table instead of 46 separate fields', false],
@@ -405,7 +405,7 @@ export function FeaturesPage() {
                 ].map(([text, pro]) => (
                   <li key={text as string} className="ft-two-col-bullet">
                     <span style={{ color: PURPLE, fontWeight: 900, flexShrink: 0 }}>✓</span>
-                    <span>{text as string}{pro && <span className="ft-pro-badge">Developer+</span>}</span>
+                    <span>{text as string}{pro && <span className="ft-pro-badge">Professional+</span>}</span>
                   </li>
                 ))}
               </ul>
@@ -524,7 +524,7 @@ export function FeaturesPage() {
             </div>
             <div className="ft-feat-card">
               <div className="ft-feat-icon">📝</div>
-              <div className="ft-feat-title">llms.txt generator <span className="ft-pro-badge">Developer+</span></div>
+              <div className="ft-feat-title">llms.txt generator <span className="ft-pro-badge">Professional+</span></div>
               <div className="ft-feat-desc">llms.txt is the emerging standard that tells AI assistants what your site is about, what pages matter, and how to cite your content correctly.</div>
               <ul className="ft-feat-bullets" style={{ marginTop: 16 }}>
                 {[
@@ -548,7 +548,7 @@ export function FeaturesPage() {
         <div className="ft-section-inner">
           <div className="ft-two-col">
             <div className="ft-two-col-text">
-              <div className="ft-pill">⚡ IndexNow <span className="ft-pro-badge" style={{ marginLeft: 0 }}>Developer+</span></div>
+              <div className="ft-pill">⚡ IndexNow <span className="ft-pro-badge" style={{ marginLeft: 0 }}>Professional+</span></div>
               <h2>Instant indexing <span style={{ color: PURPLE }}>the moment you publish</span></h2>
               <p>IndexNow is a protocol supported by Bing, Yandex, and Seznam that lets you push new URLs directly to search engines — instead of waiting for them to crawl your site.</p>
               <ul className="ft-two-col-bullets">
@@ -744,10 +744,10 @@ export function FeaturesPage() {
       <section className="ft-cta">
         <div style={{ maxWidth: 640, margin: '0 auto' }}>
           <h2 style={{ fontSize: 40, fontWeight: 900, letterSpacing: '-1.2px', margin: '0 0 20px', color: '#0C0B1D' }}>
-            One plugin. <span style={{ color: PURPLE }}>Pay once.</span>
+            One plugin. <span style={{ color: PURPLE }}>All features.</span>
           </h2>
           <p style={{ fontSize: 18, color: '#5A5A7A', margin: '0 0 36px', lineHeight: 1.65 }}>
-            Core SEO &amp; schema features are available on all plans. Advanced features — IndexNow, llms.txt, Events, specialised site types, and Advanced Hours — are included in Developer and Agency licenses.
+            Core SEO &amp; schema features are available on all plans. Advanced features — IndexNow, llms.txt, Events, specialised site types, and Advanced Hours — are included in Professional and Agency licenses.
           </p>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 28 }}>
             <Link to={CHECKOUT_URL} className="ab-btn-primary" style={{ fontSize: 16, padding: '14px 32px', borderRadius: 10 }}>
@@ -757,7 +757,7 @@ export function FeaturesPage() {
               Read documentation
             </Link>
           </div>
-          <div style={{ fontSize: 13, color: '#9090B0' }}>Joomla 4 · 5 · 6 · PHP 8.1 – 8.5 · 30-day money-back guarantee</div>
+          <div style={{ fontSize: 13, color: '#9090B0' }}>Joomla 4 · 5 · 6 · PHP 8.1 – 8.5 · Annual subscription includes updates &amp; support</div>
         </div>
       </section>
 

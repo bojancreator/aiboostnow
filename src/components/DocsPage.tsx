@@ -84,7 +84,7 @@ const sections = [
     title: 'Business Hours Widget',
     desc: 'Set your opening hours using a compact 7-row table — generates proper Schema.org automatically.',
     href: 'https://aiboostnow.com/docs/business-hours',
-    items: ['7-row weekly table', 'All same / Individual toggle', 'Marking days as closed', 'Schema.org output', 'Developer & Agency only'],
+    items: ['7-row weekly table', 'All same / Individual toggle', 'Marking days as closed', 'Schema.org output', 'Professional & Agency only'],
   },
   {
     icon: '🏪',
@@ -206,7 +206,7 @@ export function DocsPage() {
 
         <div style={{ background: '#F3F0FF', border: '1.5px solid #D4C9FF', borderRadius: 20, padding: '40px 36px', textAlign: 'center' }}>
           <h3 style={{ fontSize: 22, fontWeight: 800, margin: '0 0 12px', color: '#0C0B1D' }}>Can't find what you need?</h3>
-          <p style={{ fontSize: 16, color: '#5A5A7A', margin: '0 0 28px' }}>Our support team responds within 24 hours.</p>
+          <p style={{ fontSize: 16, color: '#5A5A7A', margin: '0 0 28px' }}>Send us a message and we will get back to you.</p>
           <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="mailto:support@aiboostnow.com" style={{ background: PURPLE, color: '#fff', fontWeight: 700, fontSize: 15, padding: '13px 28px', borderRadius: 10, textDecoration: 'none', display: 'inline-block' }}>
               Contact support →

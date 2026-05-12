@@ -5,34 +5,43 @@ import logoSrc from '../assets/ai-boost-logo.svg'
 const PURPLE = '#7B4FFF'
 const SITE_URL = 'https://aiboostnow.com'
 
-const plans = [
-  { name: 'Starter',   price: '€59',  sites: '1 site',         badge: null,           highlight: false, support: 'Email support',          url: 'https://aiboostnow.gumroad.com/l/joomlaboost-starter' },
-  { name: 'Developer', price: '€119', sites: '5 sites',        badge: 'Most Popular', highlight: true,  support: 'Priority email support', url: 'https://aiboostnow.gumroad.com/l/joomlaboost-developer' },
-  { name: 'Agency',    price: '€199', sites: 'Unlimited sites', badge: null,           highlight: false, support: 'Priority email support', url: 'https://aiboostnow.gumroad.com/l/joomlaboost-agency' },
+const freeFeatures = [
+  'Schema.org (Organization, LocalBusiness)',
+  'XML Sitemap (basic)',
+  'robots.txt (basic rules)',
+  'OpenGraph + Twitter Cards',
+  'Google Analytics 4',
+  'Community support (forum)',
 ]
 
-const featureList = [
+const paidFeatures = [
   'All plugin features included',
-  'Schema.org JSON-LD (all types)',
-  'Business Hours widget (compact table)',
+  'Schema.org JSON-LD (all 20+ types)',
+  'Business Hours widget',
   'XML Sitemap + hreflang',
   'OpenGraph + Twitter Cards',
-  'robots.txt with AI crawler rules',
+  'robots.txt — 25+ AI crawler rules',
   'llms.txt generator',
   'IndexNow integration',
   'GA4, GTM, Meta Pixel',
   '13 Site Type Presets',
   '11 language packs',
-  '1 year of updates & bug fixes',
+  'Updates & support included',
+]
+
+const plans = [
+  { name: 'Free',         price: '€0',   period: null,    sites: '1 site',          badge: null,           highlight: false, url: '/docs/getting-started', btnLabel: 'Download Free →',   features: freeFeatures },
+  { name: 'Basic',        price: '€45',  period: '/year', sites: '1 license',        badge: null,           highlight: false, url: 'https://aiboostnow.gumroad.com/l/joomlaboost-basic',        btnLabel: 'Get Basic →',       features: paidFeatures },
+  { name: 'Professional', price: '€200', period: '/year', sites: '10 licenses',      badge: 'Most Popular', highlight: true,  url: 'https://aiboostnow.gumroad.com/l/joomlaboost-professional', btnLabel: 'Get Professional →', features: paidFeatures },
 ]
 
 const faqs = [
-  { q: 'What does "one-time payment" mean?',         a: 'You pay once and own the plugin forever. Updates are included for 1 year. After that, the plugin keeps working — renewal is optional at 50% of the original price.' },
-  { q: 'Is it compatible with Joomla 4, 5, and 6?', a: 'Yes. AI Boost for Joomla supports Joomla 4.0 through 6.x with PHP 8.1 through 8.5.' },
-  { q: 'Is there a free trial?',                     a: 'No free trial, but every purchase has a 30-day money-back guarantee. If it does not work for your site, we refund you in full — no questions asked.' },
-  { q: 'Can I upgrade my license later?',            a: 'Yes. Contact support@aiboostnow.com and we will arrange an upgrade at the price difference.' },
-  { q: 'What happens after 1 year?',                 a: 'The plugin keeps working on your site forever. You only need to renew (at 50% of the original price) if you want to receive new features and updates released after your first year.' },
-  { q: 'Is EU VAT included in the price?',           a: 'VAT is added at checkout where applicable. It is collected and remitted automatically — you do not need to worry about tax compliance.' },
+  { q: 'What is included in the annual subscription?',     a: 'Your subscription covers the plugin, every update and new feature released during the year, and access to our support. When your year ends, the plugin continues to work — you only need to renew if you want new updates and continued support.' },
+  { q: 'Is it compatible with Joomla 4, 5, and 6?',       a: 'Yes. AI Boost for Joomla supports Joomla 4.0 through 6.x with PHP 8.1 through 8.5.' },
+  { q: 'What does the Free plan include?',                  a: 'The Free plan includes core SEO features: Schema.org for Organization and LocalBusiness, an XML sitemap, basic robots.txt, and OpenGraph tags. Paid plans unlock all 20+ schema types, 13 site type presets, llms.txt, IndexNow, advanced business hours, the full analytics suite, and professional support.' },
+  { q: 'What is the difference between Basic and Professional?', a: 'Both plans include every plugin feature. The difference is the number of licenses: Basic covers 1 site, Professional covers 10 sites.' },
+  { q: 'Can I upgrade my license later?',                  a: 'Yes. You can upgrade from Basic to Professional at any time. Contact us and we will arrange the upgrade at the price difference.' },
+  { q: 'Is EU VAT included in the price?',                 a: 'VAT is added at checkout where applicable. It is collected and remitted automatically — you do not need to worry about tax compliance.' },
 ]
 
 const css = `
@@ -47,11 +56,12 @@ body { margin: 0; }
 .ab-logo { height:75px; width:auto; display:block; }
 .ab-btn-primary { background:#7B4FFF; color:#fff; font-size:14px; font-weight:600; padding:11px 22px; border-radius:8px; text-decoration:none; white-space:nowrap; }
 .ab-footer { border-top:1px solid #E8E4F4; padding:40px 64px; display:flex; justify-content:space-between; align-items:center; background:#F8F7FF; flex-wrap:wrap; gap:16px; }
-.ab-plan-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; align-items:start; }
-.ab-plan { border-radius:20px; padding:36px 28px; position:relative; }
+.ab-plan-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; align-items:start; max-width:960px; margin:0 auto; }
+.ab-plan { border-radius:20px; padding:32px 28px; position:relative; }
 .ab-plan-normal { background:#fff; border:1.5px solid #E8E4F4; box-shadow:0 2px 12px rgba(0,0,0,.05); }
+.ab-plan-free { background:#F8F7FF; border:1.5px solid #E8E4F4; }
 .ab-plan-highlight { background:#7B4FFF; box-shadow:0 12px 48px rgba(123,79,255,.35); transform:scale(1.04); }
-.ab-plan-btn { display:block; text-align:center; padding:13px 0; font-weight:700; font-size:14px; border-radius:10px; text-decoration:none; }
+.ab-plan-btn { display:block; text-align:center; padding:13px 0; font-weight:700; font-size:15px; border-radius:10px; text-decoration:none; }
 .ab-feat-list { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
 .ab-feat-item { display:flex; gap:10px; align-items:flex-start; }
 @media (max-width:900px) {
@@ -59,7 +69,7 @@ body { margin: 0; }
   .ab-nav-links { display:none; }
   .ab-logo { height:54px; }
   .ab-footer { padding:32px 20px; flex-direction:column; align-items:flex-start; }
-  .ab-plan-grid { grid-template-columns:1fr !important; max-width:400px; margin:0 auto; }
+  .ab-plan-grid { grid-template-columns:1fr !important; max-width:400px; }
   .ab-plan-highlight { transform:scale(1); }
 }
 `
@@ -67,7 +77,7 @@ body { margin: 0; }
 export function PricingPage() {
   const canonicalUrl = `${SITE_URL}/pricing`
   const pageTitle = 'Pricing — AI Boost for Joomla'
-  const pageDescription = 'Simple one-time pricing for AI Boost for Joomla. Starter €59 · Developer €119 · Agency €199. Pay once, use forever. 30-day money-back guarantee.'
+  const pageDescription = 'AI Boost for Joomla pricing: Free · Basic €45/year (1 site) · Professional €200/year (10 sites). Annual subscription includes the plugin, all updates, and support.'
 
   return (
     <div className="ab-wrap">
@@ -93,7 +103,6 @@ export function PricingPage() {
         '@type': 'Organization',
         name: 'AI Boost',
         url: SITE_URL,
-        contactPoint: { '@type': 'ContactPoint', email: 'support@aiboostnow.com', contactType: 'customer support' },
         sameAs: [],
       }) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -102,9 +111,8 @@ export function PricingPage() {
         name: 'AI Boost for Joomla',
         description: 'All-in-one SEO and AEO system plugin for Joomla 4, 5, and 6.',
         offers: [
-          { '@type': 'Offer', name: 'Starter',   price: '59.00',  priceCurrency: 'EUR', availability: 'https://schema.org/InStock' },
-          { '@type': 'Offer', name: 'Developer', price: '119.00', priceCurrency: 'EUR', availability: 'https://schema.org/InStock' },
-          { '@type': 'Offer', name: 'Agency',    price: '199.00', priceCurrency: 'EUR', availability: 'https://schema.org/InStock' },
+          { '@type': 'Offer', name: 'Basic',        price: '45.00',  priceCurrency: 'EUR', priceSpecification: { '@type': 'UnitPriceSpecification', price: '45.00',  priceCurrency: 'EUR', unitCode: 'ANN' }, availability: 'https://schema.org/InStock' },
+          { '@type': 'Offer', name: 'Professional', price: '200.00', priceCurrency: 'EUR', priceSpecification: { '@type': 'UnitPriceSpecification', price: '200.00', priceCurrency: 'EUR', unitCode: 'ANN' }, availability: 'https://schema.org/InStock' },
         ],
       }) }} />
 
@@ -126,35 +134,47 @@ export function PricingPage() {
         </div>
       </nav>
 
-      <main style={{ maxWidth: 1100, margin: '0 auto', padding: '72px 32px 96px' }}>
+      <main style={{ maxWidth: 1200, margin: '0 auto', padding: '72px 32px 96px' }}>
         <div style={{ textAlign: 'center', marginBottom: 64 }}>
           <h1 style={{ fontSize: 48, fontWeight: 900, letterSpacing: '-2px', margin: '0 0 16px', color: '#0C0B1D' }}>
             Simple pricing. Every feature,<br />every license.
           </h1>
-          <p style={{ fontSize: 18, color: '#5A5A7A', margin: 0 }}>Pay once, use forever. 30-day money-back guarantee.</p>
+          <p style={{ fontSize: 18, color: '#5A5A7A', margin: 0 }}>
+            Annual subscription includes the plugin, all updates, and support.
+          </p>
         </div>
 
         <div className="ab-plan-grid">
           {plans.map(plan => (
-            <div key={plan.name} className={`ab-plan ${plan.highlight ? 'ab-plan-highlight' : 'ab-plan-normal'}`}>
+            <div key={plan.name} className={`ab-plan ${plan.highlight ? 'ab-plan-highlight' : plan.name === 'Free' ? 'ab-plan-free' : 'ab-plan-normal'}`}>
               {plan.badge && (
                 <div style={{ position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)', background: '#0C0B1D', color: '#fff', fontSize: 11, fontWeight: 700, padding: '4px 16px', borderRadius: 100, whiteSpace: 'nowrap' }}>{plan.badge}</div>
               )}
-              <div style={{ fontSize: 13, fontWeight: 700, color: plan.highlight ? 'rgba(255,255,255,.65)' : '#9090B0', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>{plan.name}</div>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 4 }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: plan.highlight ? 'rgba(255,255,255,.65)' : '#9090B0', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>{plan.name}</div>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 4, marginBottom: 4 }}>
                 <span style={{ fontSize: 48, fontWeight: 900, letterSpacing: '-2px', color: plan.highlight ? '#fff' : '#0C0B1D' }}>{plan.price}</span>
-                <span style={{ fontSize: 13, color: plan.highlight ? 'rgba(255,255,255,.5)' : '#B0B0C8' }}>one-time</span>
+                {plan.period && (
+                  <span style={{ fontSize: 13, color: plan.highlight ? 'rgba(255,255,255,.5)' : '#B0B0C8' }}>{plan.period}</span>
+                )}
               </div>
-              <div style={{ fontSize: 12, color: plan.highlight ? 'rgba(255,255,255,.4)' : '#B0B0C8', marginBottom: 16 }}>+VAT where applicable</div>
-              <div style={{ fontSize: 14, color: plan.highlight ? 'rgba(255,255,255,.75)' : '#5A5A7A', marginBottom: 28 }}>{plan.sites} · {plan.support}</div>
-              <a href={plan.url} target="_blank" rel="noopener noreferrer" className="ab-plan-btn" style={{ background: plan.highlight ? '#fff' : PURPLE, color: plan.highlight ? PURPLE : '#fff' }}>
-                Buy {plan.name} — {plan.price}
-              </a>
+              <div style={{ fontSize: 12, color: plan.highlight ? 'rgba(255,255,255,.4)' : '#B0B0C8', marginBottom: 16 }}>
+                {plan.name === 'Free' ? 'always free' : '+VAT where applicable'}
+              </div>
+              <div style={{ fontSize: 13, color: plan.highlight ? 'rgba(255,255,255,.75)' : '#5A5A7A', marginBottom: 24 }}>{plan.sites}</div>
+              {plan.name === 'Free' ? (
+                <Link to={plan.url} className="ab-plan-btn" style={{ background: '#E8E4F4', color: '#5A5A7A' }}>
+                  {plan.btnLabel}
+                </Link>
+              ) : (
+                <a href={plan.url} target="_blank" rel="noopener noreferrer" className="ab-plan-btn" style={{ background: plan.highlight ? '#fff' : PURPLE, color: plan.highlight ? PURPLE : '#fff' }}>
+                  {plan.btnLabel}
+                </a>
+              )}
               <div style={{ borderTop: `1px solid ${plan.highlight ? 'rgba(255,255,255,.2)' : '#F0ECF8'}`, marginTop: 24, paddingTop: 24 }}>
                 <ul className="ab-feat-list">
-                  {featureList.map(f => (
+                  {plan.features.map(f => (
                     <li key={f} className="ab-feat-item">
-                      <span style={{ color: plan.highlight ? 'rgba(255,255,255,.85)' : PURPLE, fontWeight: 900, fontSize: 14, marginTop: 1, flexShrink: 0 }}>✓</span>
+                      <span style={{ color: plan.highlight ? 'rgba(255,255,255,.85)' : plan.name === 'Free' ? '#9090B0' : PURPLE, fontWeight: 900, fontSize: 14, marginTop: 1, flexShrink: 0 }}>✓</span>
                       <span style={{ fontSize: 13, color: plan.highlight ? 'rgba(255,255,255,.8)' : '#5A5A7A' }}>{f}</span>
                     </li>
                   ))}
@@ -165,7 +185,7 @@ export function PricingPage() {
         </div>
 
         <div style={{ textAlign: 'center', marginTop: 40, fontSize: 14, color: '#9090B0' }}>
-          🛡️ 30-day money-back guarantee &nbsp;·&nbsp; EU VAT handled automatically
+          EU VAT handled automatically at checkout
         </div>
 
         <div style={{ borderTop: '1px solid #E8E4F4', marginTop: 80, paddingTop: 72 }}>
@@ -182,10 +202,10 @@ export function PricingPage() {
 
         <div style={{ background: '#F3F0FF', border: '1.5px solid #D4C9FF', borderRadius: 20, padding: '40px 36px', textAlign: 'center', marginTop: 72 }}>
           <h3 style={{ fontSize: 22, fontWeight: 800, margin: '0 0 12px', color: '#0C0B1D' }}>Questions before you buy?</h3>
-          <p style={{ fontSize: 16, color: '#5A5A7A', margin: '0 0 28px' }}>We respond within 24 hours. Or browse the full FAQ first.</p>
+          <p style={{ fontSize: 16, color: '#5A5A7A', margin: '0 0 28px' }}>Browse the full FAQ or send us a message.</p>
           <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
             <a href="mailto:support@aiboostnow.com" style={{ background: PURPLE, color: '#fff', fontWeight: 700, fontSize: 15, padding: '13px 28px', borderRadius: 10, textDecoration: 'none', display: 'inline-block' }}>
-              Contact support →
+              Contact us →
             </a>
             <Link to="/faq" style={{ background: '#fff', border: '1.5px solid #D4C9FF', color: PURPLE, fontWeight: 700, fontSize: 15, padding: '13px 28px', borderRadius: 10, textDecoration: 'none', display: 'inline-block' }}>
               Browse FAQ
