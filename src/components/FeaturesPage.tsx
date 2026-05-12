@@ -101,9 +101,9 @@ body { margin: 0; }
 
 const siteTypes = [
   { icon: '🏪', name: 'LocalBusiness',             desc: 'General local service with address & hours', pro: false },
-  { icon: '🍽️', name: 'Restaurant',                desc: 'Menu, cuisine, reservations, food schema', pro: false },
-  { icon: '🏨', name: 'Hotel',                     desc: 'Amenities, check-in, room types, star rating', pro: false },
   { icon: '🏢', name: 'Organization',               desc: 'Generic organization: company, non-profit, brand', pro: false },
+  { icon: '🍽️', name: 'Restaurant',                desc: 'Menu, cuisine, reservations, food schema', pro: true },
+  { icon: '🏨', name: 'Hotel',                     desc: 'Amenities, check-in, room types, star rating', pro: true },
   { icon: '🏥', name: 'MedicalClinic',             desc: 'Specialty, accepting patients, opening hours', pro: true },
   { icon: '⚖️', name: 'LegalService',              desc: 'Practice areas, attorney, jurisdiction', pro: true },
   { icon: '🎓', name: 'EducationalOrganization',   desc: 'Courses, accreditation, campus info', pro: true },
@@ -116,13 +116,13 @@ const siteTypes = [
 ]
 
 const crawlers = [
-  'GPTBot (ChatGPT)', 'ClaudeBot', 'Google-Extended', 'PerplexityBot',
-  'CCBot (Common Crawl)', 'Amazonbot', 'FacebookBot', 'Bytespider',
-  'SemrushBot', 'AhrefsBot', 'DotBot', 'DataForSeoBot',
-  'Diffbot', 'YandexBot', 'BingBot / Copilot', 'Applebot',
-  'anthropic-ai', 'cohere-ai', 'omgili', 'Timpibot',
-  'YouBot', 'Kangaroo Bot', 'Scrapy', 'Ia_archiver',
-  'MJ12bot', '+ more',
+  'GPTBot (ChatGPT)', 'OAI-SearchBot', 'ClaudeBot', 'anthropic-ai',
+  'PerplexityBot', 'Google-Extended', 'cohere-ai', 'FacebookBot',
+  'Amazonbot', 'Applebot', 'CCBot', 'YouBot',
+  'Timpibot', 'Bytespider', 'DuckAssistBot', 'SemrushBot',
+  'AhrefsBot', 'MJ12bot', 'DotBot', 'DataForSeoBot',
+  'Diffbot', 'YandexBot', 'omgili', 'ia_archiver',
+  'Scrapy', 'KangoorooBot',
 ]
 
 const analyticsItems = [
@@ -130,21 +130,25 @@ const analyticsItems = [
     icon: '📊',
     title: 'Google Analytics 4',
     desc: 'Paste your G-XXXXXXX measurement ID — tracking script is injected site-wide automatically.',
+    pro: false,
   },
   {
     icon: '🏷️',
     title: 'Google Tag Manager',
     desc: 'GTM container script injected in <head> and <body>. Works alongside GA4 or standalone.',
+    pro: false,
   },
   {
     icon: '🔍',
     title: 'Search Console Verification',
-    desc: 'Add the meta tag token from Google Search Console — no manual HTML edits needed.',
+    desc: 'One primary Google verification code on all plans. Multiple verification codes (secondary + additional) require a paid plan.',
+    pro: false,
   },
   {
     icon: '📱',
     title: 'Meta Pixel',
-    desc: 'Full Meta Pixel integration (previously Facebook Pixel) — pixel ID is all you need.',
+    desc: 'Full Meta Pixel integration (previously Facebook Pixel). Facebook domain verification code requires a paid plan.',
+    pro: false,
   },
 ]
 
@@ -273,7 +277,7 @@ export function FeaturesPage() {
             </Link>
           </div>
           <div className="ft-stats">
-            {[['20+', 'Schema.org types'], ['13', 'Site type presets'], ['25+', 'AI crawler rules'], ['11', 'Admin languages'], ['5 min', 'Install time']].map(([v, l]) => (
+            {[['20+', 'Schema.org types'], ['13', 'Site type presets'], ['26', 'AI crawler toggles'], ['11', 'Admin languages'], ['5 min', 'Install time']].map(([v, l]) => (
               <div key={l} style={{ textAlign: 'center' }}>
                 <div className="ft-stat-val">{v}</div>
                 <div className="ft-stat-lbl">{l}</div>
@@ -380,8 +384,8 @@ export function FeaturesPage() {
           </div>
           <div style={{ textAlign: 'center', marginTop: 32 }}>
             <span style={{ fontSize: 13, color: '#9090B0' }}>
-              Basic types (LocalBusiness, Restaurant, Hotel, FAQPage) available on all plans. 
-              Specialised types require Professional or Agency license.
+              Free plan includes <strong>LocalBusiness</strong> and <strong>Organization</strong> schema types.
+              All other types (Restaurant, Hotel, Medical, Legal, and 9 more) require a paid plan.
             </span>
           </div>
         </div>
@@ -513,13 +517,13 @@ export function FeaturesPage() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }}>
             <div className="ft-feat-card">
               <div className="ft-feat-icon">🚫</div>
-              <div className="ft-feat-title">robots.txt — 25+ AI crawlers</div>
-              <div className="ft-feat-desc">Choose to allow or block any combination of 25+ AI and SEO crawlers. Rules are written to robots.txt automatically — no server access needed.</div>
+              <div className="ft-feat-title">robots.txt — 26 AI &amp; SEO crawlers</div>
+              <div className="ft-feat-desc">Allow or block any of 26 AI and SEO crawlers individually — directly from the plugin settings. Every toggle is a simple Allow/Disallow switch. Changes apply instantly with no server access needed.</div>
               <div className="ft-crawler-grid" style={{ marginTop: 16 }}>
                 {crawlers.slice(0, 12).map(c => (
                   <div key={c} className="ft-crawler-tag">{c}</div>
                 ))}
-                <div className="ft-crawler-tag" style={{ gridColumn: 'span 4', textAlign: 'center', color: '#9090B0' }}>+ 13 more crawlers configured</div>
+                <div className="ft-crawler-tag" style={{ gridColumn: 'span 4', textAlign: 'center', color: '#9090B0' }}>All 26 configurable individually</div>
               </div>
             </div>
             <div className="ft-feat-card">
@@ -624,19 +628,20 @@ export function FeaturesPage() {
             <div className="ft-two-col-text">
               <div className="ft-pill">📣 Social &amp; Meta Tags</div>
               <h2>OpenGraph + Twitter Cards on <span style={{ color: PURPLE }}>every page</span></h2>
-              <p>AI Boost generates correct og:title, og:description, og:image, and Twitter Card meta tags on every Joomla page. Per-article overrides available from the article editor — no extra fields to find.</p>
+              <p>AI Boost generates correct og:title, og:description, og:image, and Twitter Card meta tags on every Joomla page automatically. Advanced per-article and per-language controls are available on paid plans.</p>
               <ul className="ft-two-col-bullets">
                 {[
-                  'og:title, og:description, og:image on every page',
-                  'Twitter Cards (summary_large_image)',
-                  'Per-article image & description overrides',
-                  'Default fallback image configurable',
-                  'og:type set correctly (article, website)',
-                  'og:locale for multilingual Joomla sites',
-                ].map(b => (
-                  <li key={b} className="ft-two-col-bullet">
+                  ['og:title, og:description, og:image on every page', false],
+                  ['Twitter Cards (summary_large_image)', false],
+                  ['Default fallback image configurable', false],
+                  ['og:type set correctly (article, website)', false],
+                  ['Per-article image & description overrides', true],
+                  ['Per-language OG images and site names', true],
+                  ['og:locale for multilingual Joomla sites', true],
+                ].map(([b, pro]) => (
+                  <li key={b as string} className="ft-two-col-bullet">
                     <span style={{ color: PURPLE, fontWeight: 900, flexShrink: 0 }}>✓</span>
-                    <span>{b}</span>
+                    <span>{b as string}{pro && <span className="ft-pro-badge">Professional+</span>}</span>
                   </li>
                 ))}
               </ul>
