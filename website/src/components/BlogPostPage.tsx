@@ -1,0 +1,237 @@
+import { useState } from 'react'
+import { useParams, Link, Navigate } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
+import logoSrc from '../assets/ai-boost-logo.svg'
+import { getBlogPost, blogPosts } from '../data/blogPosts'
+
+const PURPLE = '#7B4FFF'
+const CHECKOUT_URL = '/pricing'
+const SITE_URL = 'https://aiboostnow.com'
+
+const css = `
+* { box-sizing: border-box; }
+body { margin: 0; }
+.ab-wrap { font-family: 'Inter', system-ui, sans-serif; background: #fff; color: #0C0B1D; overflow-x: hidden; }
+.ab-nav-bar { border-bottom:1px solid #E8E4F4; position:sticky; top:0; background:#fff; z-index:200; }
+.ab-nav { max-width:1200px; margin:0 auto; padding:0 24px; height:80px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; }
+.ab-nav-links { display:flex; align-items:center; justify-content:center; gap:32px; }
+.ab-nav-cta { display:flex; align-items:center; justify-content:flex-end; gap:12px; }
+.ab-nav-link { color:#5A5A7A; font-size:15px; font-weight:500; text-decoration:none; }
+.ab-logo { height:75px; width:auto; display:block; }
+.ab-btn-primary { background:#7B4FFF; color:#fff; font-size:14px; font-weight:600; padding:11px 22px; border-radius:8px; text-decoration:none; white-space:nowrap; }
+.ab-hamburger { display:none; background:none; border:none; cursor:pointer; padding:8px; color:#0C0B1D; line-height:1; }
+.ab-mobile-menu { display:none; position:fixed; top:80px; left:0; right:0; background:#fff; border-bottom:1px solid #E8E4F4; box-shadow:0 8px 32px rgba(0,0,0,.1); z-index:199; padding:16px 24px 24px; flex-direction:column; gap:4px; }
+.ab-mobile-menu.open { display:flex; }
+.ab-mobile-link { color:#0C0B1D; font-size:17px; font-weight:600; text-decoration:none; padding:14px 0; border-bottom:1px solid #F0ECF8; }
+.ab-mobile-cta { display:block; background:#7B4FFF; color:#fff; font-size:16px; font-weight:700; padding:15px; border-radius:10px; text-decoration:none; text-align:center; margin-top:12px; }
+.ab-footer { border-top:1px solid #E8E4F4; padding:40px 64px; display:flex; justify-content:space-between; align-items:center; background:#F8F7FF; flex-wrap:wrap; gap:16px; }
+.post-body h2 { font-size:24px; font-weight:800; margin:48px 0 16px; letter-spacing:-.5px; color:#0C0B1D; }
+.post-body h3 { font-size:20px; font-weight:700; margin:36px 0 12px; color:#0C0B1D; }
+.post-body p { font-size:16px; line-height:1.8; color:#3A3A5A; margin:0 0 20px; }
+.post-body ul,.post-body ol { padding-left:24px; margin:0 0 20px; }
+.post-body li { font-size:16px; line-height:1.75; color:#3A3A5A; margin-bottom:8px; }
+.post-body pre { background:#F3F0FF; border:1.5px solid #E0D8FF; border-radius:10px; padding:20px 24px; overflow-x:auto; margin:24px 0; }
+.post-body code { font-family:monospace; font-size:14px; color:#5A2FCC; background:#F3F0FF; padding:2px 6px; border-radius:4px; }
+.post-body pre code { background:none; padding:0; color:#1A1A3A; font-size:13px; line-height:1.6; }
+.post-body table { width:100%; border-collapse:collapse; margin:24px 0; }
+.post-body th { background:#F3F0FF; font-size:13px; font-weight:700; padding:10px 14px; text-align:left; border:1px solid #E0D8FF; }
+.post-body td { font-size:14px; padding:10px 14px; border:1px solid #E8E4F4; color:#3A3A5A; }
+.post-body strong { color:#0C0B1D; font-weight:700; }
+.post-body a { color:${PURPLE}; }
+@media (max-width:900px) {
+  .ab-nav { padding:0 16px; height:64px; grid-template-columns:1fr auto; }
+  .ab-nav-links { display:none; }
+  .ab-hamburger { display:flex; align-items:center; justify-content:center; }
+  .ab-nav-cta .ab-btn-primary { display:none; }
+  .ab-logo { height:54px; }
+  .ab-footer { padding:32px 20px; flex-direction:column; align-items:flex-start; }
+  .ab-mobile-menu { top:64px; }
+}
+`
+
+function renderMarkdown(md: string): string {
+  return md
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/```(\w*)\n([\s\S]*?)```/g, (_m, _lang, code) =>
+      `<pre><code>${code.trim()}</code></pre>`)
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^\| (.+) \|$/gm, (_m, row) => {
+      const cells: string[] = row.split(' | ')
+      const tag = cells.some((c: string) => /^[-:]+$/.test(c.trim())) ? null : 'td'
+      if (!tag) return ''
+      return `<tr>${cells.map((c: string) => `<${tag}>${c.trim()}</${tag}>`).join('')}</tr>`
+    })
+    .replace(/(<tr>.*<\/tr>\n)+/g, m => `<table>${m}</table>`)
+    .replace(/^- (.+)$/gm, '<li>$1</li>')
+    .replace(/(<li>.*<\/li>\n)+/g, m => `<ul>${m}</ul>`)
+    .split('\n\n')
+    .map(block => {
+      if (block.startsWith('<h') || block.startsWith('<ul') || block.startsWith('<ol') ||
+          block.startsWith('<pre') || block.startsWith('<table')) return block
+      const trimmed = block.trim()
+      return trimmed ? `<p>${trimmed.replace(/\n/g, ' ')}</p>` : ''
+    })
+    .join('\n')
+}
+
+export function BlogPostPage() {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const close = () => setMenuOpen(false)
+  const { slug } = useParams<{ slug: string }>()
+  const post = slug ? getBlogPost(slug) : undefined
+
+  if (!post) return <Navigate to="/blog" replace />
+
+  const canonicalUrl = `${SITE_URL}/blog/${post.slug}`
+  const pageTitle = `${post.title} | AI Boost Blog`
+
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: { '@type': 'Organization', name: 'AI Boost', url: SITE_URL },
+    publisher: { '@type': 'Organization', name: 'AI Boost', url: SITE_URL },
+  }
+
+  const related = blogPosts.filter(p => p.slug !== post.slug && p.tags.some(t => post.tags.includes(t))).slice(0, 3)
+
+  return (
+    <div className="ab-wrap">
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={post.description} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={post.description} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:site_name" content="AI Boost" />
+        <meta property="og:image" content={`${SITE_URL}/og/${post.slug}.png`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={post.description} />
+        <meta name="twitter:image" content={`${SITE_URL}/og/${post.slug}.png`} />
+      </Helmet>
+
+      <style>{css}</style>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'AI Boost',
+        url: SITE_URL,
+        contactPoint: { '@type': 'ContactPoint', email: 'support@aiboostnow.com', contactType: 'customer support' },
+        sameAs: [],
+      }) }} />
+
+      <nav className="ab-nav-bar">
+        <div className="ab-nav">
+          <Link to="/"><img src={logoSrc} className="ab-logo" alt="AI Boost" /></Link>
+          <div className="ab-nav-links">
+            <Link to="/features" className="ab-nav-link">Features</Link>
+            <Link to="/pricing" className="ab-nav-link">Pricing</Link>
+            <Link to="/docs" className="ab-nav-link">Docs</Link>
+            <Link to="/blog" className="ab-nav-link" style={{ color: PURPLE, fontWeight: 700 }}>Blog</Link>
+            <Link to="/faq" className="ab-nav-link">FAQ</Link>
+          </div>
+          <div className="ab-nav-cta">
+            <Link to="/pricing" className="ab-btn-primary">Get AI Boost →</Link>
+            <button className="ab-hamburger" onClick={() => setMenuOpen(o => !o)} aria-label="Menu">
+              {menuOpen
+                ? <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                : <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+              }
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <div className={`ab-mobile-menu${menuOpen ? ' open' : ''}`}>
+        <Link to="/features" className="ab-mobile-link" onClick={close}>Features</Link>
+        <Link to="/pricing"  className="ab-mobile-link" onClick={close}>Pricing</Link>
+        <Link to="/docs"     className="ab-mobile-link" onClick={close}>Docs</Link>
+        <Link to="/blog"     className="ab-mobile-link" onClick={close} style={{ color: '#7B4FFF' }}>Blog</Link>
+        <Link to="/faq"      className="ab-mobile-link" onClick={close}>FAQ</Link>
+        <Link to="/pricing"  className="ab-mobile-cta"  onClick={close}>Get AI Boost →</Link>
+      </div>
+
+      <main style={{ maxWidth: 740, margin: '0 auto', padding: '56px 32px 96px' }}>
+        <Link to="/blog" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: '#9090B0', fontSize: 14, fontWeight: 600, textDecoration: 'none', marginBottom: 32 }}>
+          ← All articles
+        </Link>
+
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 20 }}>
+          {post.tags.map(tag => (
+            <span key={tag} style={{ background: '#F3F0FF', color: PURPLE, fontSize: 11, fontWeight: 700, padding: '3px 10px', borderRadius: 100 }}>{tag}</span>
+          ))}
+        </div>
+
+        <h1 style={{ fontSize: 36, fontWeight: 900, letterSpacing: '-1px', margin: '0 0 16px', lineHeight: 1.2, color: '#0C0B1D' }}>
+          {post.title}
+        </h1>
+
+        <p style={{ fontSize: 17, color: '#5A5A7A', lineHeight: 1.65, margin: '0 0 12px' }}>{post.description}</p>
+
+        <div style={{ display: 'flex', gap: 20, fontSize: 13, color: '#9090B0', marginBottom: 48, paddingBottom: 32, borderBottom: '1px solid #E8E4F4' }}>
+          <span>{new Date(post.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+          <span>·</span>
+          <span>{post.readTime}</span>
+        </div>
+
+        <div
+          className="post-body"
+          dangerouslySetInnerHTML={{ __html: renderMarkdown(post.content) }}
+        />
+
+        <div style={{ background: '#F3F0FF', border: '1.5px solid #D4C9FF', borderRadius: 20, padding: '36px', marginTop: 64 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: PURPLE, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 12 }}>Ready to implement this?</div>
+          <h3 style={{ fontSize: 22, fontWeight: 800, margin: '0 0 12px', color: '#0C0B1D' }}>AI Boost for Joomla handles it automatically</h3>
+          <p style={{ fontSize: 15, color: '#5A5A7A', margin: '0 0 24px', lineHeight: 1.65 }}>
+            Everything described in this article — and more — is built into AI Boost for Joomla. Install in 5 minutes, no coding required.
+          </p>
+          <Link to="/pricing"
+            style={{ background: PURPLE, color: '#fff', fontWeight: 700, fontSize: 15, padding: '13px 28px', borderRadius: 10, textDecoration: 'none', display: 'inline-block' }}>
+            Get AI Boost for Joomla →
+          </Link>
+        </div>
+
+        {related.length > 0 && (
+          <div style={{ marginTop: 64 }}>
+            <h3 style={{ fontSize: 20, fontWeight: 800, margin: '0 0 24px', color: '#0C0B1D' }}>Related articles</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              {related.map(r => (
+                <Link key={r.slug} to={`/blog/${r.slug}`}
+                  style={{ display: 'block', padding: '20px 24px', border: '1.5px solid #E8E4F4', borderRadius: 12, textDecoration: 'none', color: 'inherit' }}>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: '#0C0B1D', marginBottom: 6 }}>{r.title}</div>
+                  <div style={{ fontSize: 13, color: '#9090B0' }}>{r.readTime}</div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+      </main>
+
+      <footer className="ab-footer">
+        <Link to="/"><img src={logoSrc} style={{ height: 54, width: 'auto' }} alt="AI Boost" /></Link>
+        <div style={{ fontSize: 13, color: '#9090B0' }}>© 2026 AI Boost · support@aiboostnow.com</div>
+        <div style={{ display: 'flex', gap: 24 }}>
+          <Link to="/features" style={{ fontSize: 13, color: '#9090B0', textDecoration: 'none' }}>Features</Link>
+          <Link to="/pricing" style={{ fontSize: 13, color: '#9090B0', textDecoration: 'none' }}>Pricing</Link>
+          <Link to="/docs" style={{ fontSize: 13, color: '#9090B0', textDecoration: 'none' }}>Docs</Link>
+          <Link to="/blog" style={{ fontSize: 13, color: '#9090B0', textDecoration: 'none' }}>Blog</Link>
+          <Link to="/faq" style={{ fontSize: 13, color: '#9090B0', textDecoration: 'none' }}>FAQ</Link>
+        </div>
+      </footer>
+    </div>
+  )
+}
