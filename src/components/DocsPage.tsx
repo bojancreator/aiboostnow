@@ -34,63 +34,63 @@ const sections = [
     icon: '🚀',
     title: 'Getting Started',
     desc: 'Install AI Boost for Joomla and get structured data working in under 5 minutes.',
-    href: 'https://aiboostnow.com/docs/getting-started',
+    href: '/docs/getting-started',
     items: ['System requirements', 'Downloading the plugin', 'Installing via Extension Manager', 'Enabling the plugin', 'Quick Setup wizard'],
   },
   {
     icon: '🏢',
     title: 'Organization & Identity',
     desc: 'Set up your business identity, contact information, social profiles, and location.',
-    href: 'https://aiboostnow.com/docs/organization',
+    href: '/docs/organization',
     items: ['Business name & logo', 'Contact details', 'Social media links', 'Address & map', 'Multilingual fields'],
   },
   {
     icon: '🧠',
     title: 'Schema.org Structured Data',
     desc: 'Configure structured data types for your site — from LocalBusiness to Hotel to FAQPage.',
-    href: 'https://aiboostnow.com/docs/schema',
+    href: '/docs/schema',
     items: ['Choosing a site type', '13 preset site types', 'FAQ auto-detection', 'Manual FAQ entries', 'Event schema'],
   },
   {
     icon: '🗺️',
     title: 'XML Sitemap & Hreflang',
     desc: 'Auto-generate a dynamic XML sitemap and hreflang tags for multilingual Joomla sites.',
-    href: 'https://aiboostnow.com/docs/sitemap',
+    href: '/docs/sitemap',
     items: ['Enabling the sitemap', 'Including articles & categories', 'Hreflang for multilingual', 'Sitemap ping on publish', 'Custom URL priorities'],
   },
   {
     icon: '📱',
     title: 'OpenGraph & Social Meta',
     desc: 'Control how your pages appear when shared on Facebook, LinkedIn, Twitter/X, and Slack.',
-    href: 'https://aiboostnow.com/docs/social',
+    href: '/docs/social',
     items: ['OpenGraph title & description', 'og:image setup', 'Twitter Card settings', 'Per-article overrides', 'Meta Pixel integration'],
   },
   {
     icon: '📊',
     title: 'Analytics & Tracking',
     desc: 'Connect GA4, Google Tag Manager, Google Search Console verification, and IndexNow.',
-    href: 'https://aiboostnow.com/docs/analytics',
+    href: '/docs/analytics',
     items: ['Google Analytics 4', 'Google Tag Manager', 'GSC verification tag', 'IndexNow (Bing/Yandex)', 'llms.txt generator'],
   },
   {
     icon: '🤖',
-    title: 'robots.txt & llms.txt',
+    title: 'robots.txt & AI Crawlers',
     desc: 'Manage crawler access rules for AI engines, search bots, and your own staging environment.',
-    href: 'https://aiboostnow.com/docs/robots',
+    href: '/docs/robots',
     items: ['robots.txt editor', '25+ AI crawler rules', 'Allowing/blocking bots', 'llms.txt for ChatGPT', 'Staging mode'],
   },
   {
     icon: '🕐',
     title: 'Business Hours Widget',
     desc: 'Set your opening hours using a compact 7-row table — generates proper Schema.org automatically.',
-    href: 'https://aiboostnow.com/docs/business-hours',
-    items: ['7-row weekly table', 'All same / Individual toggle', 'Marking days as closed', 'Schema.org output', 'Professional & Agency only'],
+    href: '/docs/business-hours',
+    items: ['7-row weekly table', 'All same / Individual toggle', 'Marking days as closed', 'Schema.org output', 'Professional plan'],
   },
   {
     icon: '🏪',
     title: '13 Site Type Presets',
     desc: 'One-click presets that fill the right schema fields for your industry automatically.',
-    href: 'https://aiboostnow.com/docs/site-types',
+    href: '/docs/site-types',
     items: ['LocalBusiness & Restaurant', 'Hotel & MedicalClinic', 'LegalService & Dentist', 'HealthClub & RealEstateAgent', 'Person, News, Event, FAQ'],
   },
 ]
@@ -168,7 +168,7 @@ export function DocsPage() {
           style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 24, marginBottom: 72 }}
         >
           {sections.map(s => (
-            <a key={s.title} href={s.href} className="ab-doc-card">
+            <Link key={s.title} to={s.href} className="ab-doc-card">
               <div style={{ fontSize: 32 }}>{s.icon}</div>
               <div style={{ fontSize: 17, fontWeight: 700, color: '#0C0B1D' }}>{s.title}</div>
               <div style={{ fontSize: 14, color: '#5A5A7A', lineHeight: 1.6 }}>{s.desc}</div>
@@ -178,7 +178,7 @@ export function DocsPage() {
                 ))}
               </ul>
               <div style={{ marginTop: 4, fontSize: 13, color: PURPLE, fontWeight: 600 }}>Read more →</div>
-            </a>
+            </Link>
           ))}
         </div>
 

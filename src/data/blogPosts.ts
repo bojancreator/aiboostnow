@@ -728,6 +728,493 @@ The image must be served over HTTPS. X will not display HTTP image URLs.
 The plugin sets \`twitter:card\` to \`summary_large_image\` by default — the format that performs best for most content types. Per-article image overrides (configured through Joomla Custom Fields) apply to both OG and Twitter Card tags simultaneously, so each article shows its own preview image across all social platforms with a single custom field configuration.
     `.trim(),
   },
+  {
+    slug: 'how-to-appear-in-google-ai-overview',
+    title: 'How to appear in Google AI Overview — a practical guide for website owners',
+    description: 'Google AI Overview now appears above traditional results for millions of queries. Here is what determines whether your site gets cited — and what you can do about it.',
+    date: '2026-05-12',
+    readTime: '7 min read',
+    tags: ['AI Search', 'Google', 'AEO'],
+    content: `
+## What is Google AI Overview
+
+Since mid-2024, Google has been showing AI-generated summaries at the very top of search results for a growing range of queries. These summaries — called **AI Overview** (previously called SGE, Search Generative Experience) — answer the user's question directly, citing a small number of sources below the summary.
+
+If your website is one of those cited sources, you get a link, a snippet, and visibility that places you above all traditional organic results. If you are not cited, you are competing for positions that appear below an answer box that already satisfied the user's intent.
+
+Understanding how to get into AI Overview is one of the most valuable SEO skills you can develop right now.
+
+## How Google selects AI Overview sources
+
+Google has not published a definitive technical specification, but research and observation since 2024 reveal consistent patterns:
+
+**Authoritative, entity-rich content.** Pages that clearly establish who the author or business is, what their expertise is, and what the page is about get cited more than anonymous content. Schema.org structured data — particularly \`Organization\`, \`Person\`, and \`Article\` types — helps Google establish this entity context.
+
+**FAQ and question-answer structures.** AI Overview often answers questions. Pages that explicitly structure content as questions and answers — through \`FAQPage\` Schema, HTML \`<details>\` accordions, or clear \`<h3>\` question / \`<p>\` answer patterns — are disproportionately cited for question-type queries.
+
+**Freshness signals.** AI Overview favors recently updated content, particularly for time-sensitive queries. Your \`dateModified\` in Article Schema, your \`lastmod\` in the XML sitemap, and your IndexNow submissions all contribute to freshness signals.
+
+**Topical relevance and depth.** Thin content rarely appears in AI Overview. Pages that cover a topic comprehensively — including related subtopics, definitions, examples, and practical steps — perform significantly better.
+
+**Strong E-E-A-T signals.** Experience, Expertise, Authoritativeness, and Trustworthiness. This means: author attribution with \`Person\` Schema, business identity via \`Organization\` Schema, social profile links in \`sameAs\`, aggregate ratings from verified platforms, and a clean link profile.
+
+## Structured data is not optional for AI Overview
+
+AI systems need unambiguous signals. Structured data is the clearest signal you can give. For local businesses, a complete \`LocalBusiness\` or \`Hotel\` schema with address, phone, opening hours, and GPS coordinates gives Google everything it needs to cite your business for location-based queries.
+
+For content sites, \`Article\` Schema with \`author\`, \`datePublished\`, \`dateModified\`, and \`description\` tells Google that this is a fresh, attributed piece of expertise — not an anonymous wall of text.
+
+\`FAQPage\` Schema is particularly powerful. When a user asks a question and your page has that question (and answer) marked up in \`FAQPage\` Schema, Google has a machine-readable, extractable answer ready. That is exactly what AI Overview needs.
+
+## What llms.txt adds to the picture
+
+Beyond structured data, \`llms.txt\` gives AI systems a high-level map of your site before they crawl individual pages. A well-crafted \`llms.txt\` that describes your expertise, links to your authoritative pages, and presents your content architecture clearly helps AI systems (including Google's AI infrastructure) understand what your site is the go-to resource for.
+
+## Practical checklist for AI Overview eligibility
+
+- Implement Schema.org structured data (Organization, Article, FAQPage at minimum)
+- Add \`FAQPage\` Schema to pages that answer questions
+- Keep your \`dateModified\` accurate — update it when you genuinely update content
+- Submit updated pages via IndexNow for faster indexing
+- Add \`llms.txt\` to give AI crawlers a site-level orientation
+- Include author attribution with \`Person\` Schema on article pages
+- Add \`AggregateRating\` from real third-party review platforms
+- Ensure your \`robots.txt\` explicitly allows Googlebot and AI crawlers
+
+## What AI Boost for Joomla does automatically
+
+**AI Boost for Joomla** handles the entire structured data layer without you writing a single line of JSON-LD. It generates \`Organization\`, \`LocalBusiness\`, \`Hotel\`, \`Article\`, and \`FAQPage\` schemas automatically — including auto-detection of FAQ patterns in your article content. It also generates \`llms.txt\`, manages your \`robots.txt\` crawler permissions, submits pages via IndexNow, and injects \`Article\` Schema with fresh \`dateModified\` values from your Joomla database.
+
+The result is a site that gives Google's AI systems everything they need to cite you confidently.
+    `.trim(),
+  },
+  {
+    slug: 'joomla-seo-checklist-2026',
+    title: 'Joomla SEO checklist 2026 — 20 things to do before you go live',
+    description: 'A practical 20-point checklist covering structured data, sitemaps, crawl permissions, social meta, analytics, and AI search signals — everything a Joomla site needs in 2026.',
+    date: '2026-05-14',
+    readTime: '8 min read',
+    tags: ['Joomla', 'SEO', 'Checklist'],
+    content: `
+## Why this checklist exists
+
+Launching a Joomla site in 2026 without SEO foundations is expensive to fix later. Structured data, sitemaps, and crawler permissions are far easier to configure before launch than to retrofit after thousands of pages are already indexed incorrectly.
+
+This checklist covers all the essentials — not just for traditional Google SEO, but for AI search engines (ChatGPT, Perplexity, Google AI Overview) that are now a significant traffic source for many sites.
+
+Work through each item before you go live or as an audit of an existing site.
+
+---
+
+## Technical foundation
+
+**1. Verify robots.txt is configured correctly**
+
+Visit \`yoursite.com/robots.txt\`. It should allow Googlebot and major AI crawlers. It should block \`/administrator/\`, \`/cache/\`, \`/tmp/\`, and other Joomla system paths. It should include a \`Sitemap:\` line pointing to your sitemap URL.
+
+**2. Submit your XML sitemap to Google Search Console**
+
+Your sitemap should be at \`yoursite.com/sitemap.xml\`. Log in to Google Search Console, go to **Sitemaps**, and submit it. This tells Google where all your pages are — it does not wait to find them by crawling links.
+
+**3. Submit your sitemap to Bing Webmaster Tools**
+
+Bing is separate from Google. Create a Bing Webmaster Tools account, verify your site, and submit your sitemap. Bing powers AI Overview features in Microsoft Copilot.
+
+**4. Verify your canonical tags**
+
+Every page should have a \`<link rel="canonical">\` tag pointing to its canonical URL. This prevents duplicate content issues when Joomla generates the same content at multiple URLs (e.g., with and without trailing slash, with and without query parameters).
+
+**5. Check page speed (Core Web Vitals)**
+
+Use Google PageSpeed Insights or Lighthouse. Target LCP (Largest Contentful Paint) under 2.5 seconds, CLS (Cumulative Layout Shift) under 0.1, and INP (Interaction to Next Paint) under 200ms. Slow pages rank lower and are less likely to be cited in AI Overview.
+
+---
+
+## Schema.org structured data
+
+**6. Implement Organization or LocalBusiness Schema**
+
+Every Joomla site should have at minimum an \`Organization\` schema on the homepage with: name, URL, logo, contact email, and \`sameAs\` links to your social profiles. Physical businesses should use \`LocalBusiness\` with address, phone, and GPS coordinates.
+
+**7. Add Article Schema to blog and news pages**
+
+Article pages need: \`headline\`, \`author\` (with \`Person\` type), \`datePublished\`, \`dateModified\`, and \`image\`. This is required for Google News inclusion and significantly improves AI Overview eligibility.
+
+**8. Implement FAQPage Schema where applicable**
+
+Any page with a question-and-answer section should have \`FAQPage\` Schema. This is one of the highest-impact structured data types for AI search citations.
+
+**9. Validate with Google's Rich Results Test**
+
+After implementing Schema, test at \`search.google.com/test/rich-results\`. Fix any errors — missing required fields, incorrect nesting, or invalid property values.
+
+---
+
+## AI search signals
+
+**10. Generate llms.txt**
+
+Place an \`llms.txt\` file at \`yoursite.com/llms.txt\` describing your site in a format optimised for AI assistants. This helps ChatGPT, Perplexity, and Claude understand what your site is about before they crawl it.
+
+**11. Verify AI crawlers are allowed**
+
+Check that GPTBot, ClaudeBot, PerplexityBot, and other major AI crawlers are allowed in your robots.txt. Many Joomla sites accidentally block them with broad Disallow rules.
+
+**12. Enable IndexNow**
+
+Set up IndexNow to notify Bing, Yandex, and Seznam the instant you publish new content. Pages submitted via IndexNow are typically indexed within minutes rather than days.
+
+---
+
+## Social and meta
+
+**13. Set up OpenGraph tags**
+
+Every page needs \`og:title\`, \`og:description\`, \`og:image\`, and \`og:url\`. The OG image should be 1200×630 pixels. Without OG tags, social platforms generate ugly, random previews when anyone shares your content.
+
+**14. Set up Twitter Cards**
+
+Add \`twitter:card\`, \`twitter:title\`, \`twitter:description\`, and \`twitter:image\` tags. Use \`summary_large_image\` for content pages.
+
+**15. Verify per-article OG overrides work**
+
+Test that blog and news articles show their own OG image (not the site-wide default) when shared on social media. Use the Facebook Sharing Debugger to verify.
+
+---
+
+## Analytics and verification
+
+**16. Install Google Analytics 4**
+
+Set up a GA4 property and implement the tracking code via Google Tag Manager or directly. Verify that pageviews are recording in GA4's Realtime report.
+
+**17. Set up Google Search Console**
+
+Verify your site in Google Search Console using the HTML meta tag method. This is the primary tool for monitoring your search performance, indexing issues, and structured data errors.
+
+**18. Verify the robots meta tag**
+
+Ensure your pages do not have \`<meta name="robots" content="noindex">\` unless intentional. A common Joomla mistake is leaving noindex enabled from development. Check the Joomla Global Configuration → Metadata settings.
+
+---
+
+## Content quality
+
+**19. Write meta descriptions for key pages**
+
+Meta descriptions (150–160 characters) do not directly affect rankings, but they control what appears in search snippets. Write them for your homepage, category pages, and top content pages.
+
+**20. Set hreflang if you have multiple languages**
+
+For multilingual Joomla sites, implement hreflang tags for all language versions. Every language version must reference all other versions, including \`x-default\`. Without hreflang, Google may serve the wrong language to users.
+
+---
+
+## Making this checklist automatic
+
+Most of these 20 items can be automated with a single plugin. **AI Boost for Joomla** handles items 1–2 (robots.txt + sitemap), 6–9 (Schema.org), 10–12 (llms.txt, AI crawler permissions, IndexNow), 13–15 (OpenGraph + Twitter Cards), and 20 (hreflang) automatically — leaving you to focus on content quality, page speed, and analytics.
+    `.trim(),
+  },
+  {
+    slug: 'what-is-rich-snippet',
+    title: 'What is a rich snippet — and how structured data creates them',
+    description: 'Rich snippets are enhanced search results that show star ratings, FAQ dropdowns, event dates, and prices directly in Google. Here is exactly how they work and how to get them.',
+    date: '2026-05-16',
+    readTime: '6 min read',
+    tags: ['Rich Snippets', 'Schema.org', 'Google'],
+    content: `
+## The difference between a regular result and a rich snippet
+
+A standard Google search result shows three things: a blue link title, a green URL, and a short description snippet. That has been the default for over two decades.
+
+A **rich snippet** adds visual enhancements — star ratings, review counts, prices, availability, event dates, FAQ dropdowns, recipe details, or images — directly into the search result listing, before the user even clicks.
+
+These enhancements are not styled guesses by Google. They come from structured data that you embed in your page's HTML — specifically, from **Schema.org JSON-LD markup** that tells Google precisely what type of content the page contains and what its key properties are.
+
+## Why rich snippets matter
+
+**Higher click-through rates.** A search result with five gold stars and "4.8 (2,341 reviews)" consistently outperforms a plain text result, even when the plain result ranks higher. Studies show CTR improvements of 20–40% for results with star ratings.
+
+**More search result real estate.** A FAQ rich result with three expanded question-answer pairs takes up dramatically more vertical space than a standard result. More space means more visibility.
+
+**Better qualified traffic.** When users see the price range, opening hours, or event date in the search result, they know what they are clicking into. This tends to improve the quality of traffic — fewer people bouncing because the page was not what they expected.
+
+## The main rich snippet types for 2026
+
+| Type | What it shows | Schema required |
+|------|--------------|-----------------|
+| Review / Rating | Stars, score, review count | \`AggregateRating\` |
+| FAQ | Expandable Q&A items under the result | \`FAQPage\` |
+| Event | Date, location, ticket status | \`Event\` |
+| Product | Price, availability, rating | \`Product\` |
+| Recipe | Time, calories, rating | \`Recipe\` |
+| Article / News | Date, author, publisher | \`Article\` / \`NewsArticle\` |
+| Breadcrumb | Hierarchical site path | \`BreadcrumbList\` |
+| Local Business | Address, phone, hours | \`LocalBusiness\` |
+
+## How structured data triggers rich snippets
+
+Google reads your structured data when it crawls your page. If the data is correctly formatted, relevant to the page content, and complies with Google's content policies, Google may show a rich snippet for queries where that data is relevant.
+
+The word "may" is important — structured data makes you **eligible** for rich snippets, it does not guarantee them. Google decides when and where to show them based on query intent, result quality, and space on the page.
+
+The structured data must be:
+
+1. **Accurate** — it must describe the actual content of the page, not different content
+2. **Complete** — required fields for each type must be present
+3. **Correctly formatted** — valid JSON-LD with proper nesting and property types
+4. **Not spammy** — fabricated ratings, missing content, or manipulative markup will result in manual or algorithmic penalties
+
+## FAQ rich snippets — the most accessible type
+
+For most content sites, \`FAQPage\` Schema is the quickest path to rich snippet eligibility. If your page has a section with questions and answers — even a simple FAQ at the bottom of an article — marking it up with \`FAQPage\` Schema can produce an expandable Q&A block directly in the search result.
+
+\`\`\`json
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I install AI Boost for Joomla?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Download the ZIP from aiboostnow.com, install via the Joomla Extension Manager, and enable the plugin."
+      }
+    }
+  ]
+}
+\`\`\`
+
+The FAQ rich snippet is particularly valuable because it captures additional vertical space without requiring a higher ranking position.
+
+## Star rating rich snippets — what you need
+
+Star ratings appear in rich snippets only for specific content types: Products, Recipes, Events, Local Businesses (via Google Business Profile), and some Review-type pages. They do **not** appear for generic Organization schemas or arbitrary websites.
+
+For local businesses, the rating typically comes from Google Business Profile, not your Schema markup. But adding \`AggregateRating\` to your \`LocalBusiness\` Schema with a verifiable rating source (Booking.com, TripAdvisor, etc.) signals that verifiable third-party data exists and can reinforce your profile.
+
+## Validating your rich snippet eligibility
+
+1. Go to [Google's Rich Results Test](https://search.google.com/test/rich-results)
+2. Enter your page URL (or paste the HTML directly)
+3. See which rich result types your page is eligible for
+4. Fix any errors or warnings
+
+The tool shows you exactly which fields are missing, which values are incorrect, and which rich result types your structured data qualifies for. Run it every time you implement or change structured data.
+
+## How AI Boost for Joomla creates rich snippet eligibility
+
+**AI Boost for Joomla** generates Schema.org markup automatically for every page on your Joomla site. It creates:
+
+- \`Organization\` or \`LocalBusiness\` schema with complete identity data
+- \`Article\` schema with author, dates, and publisher for blog/news pages
+- \`FAQPage\` schema by auto-detecting Q&A patterns in article content
+- \`Event\` schema for event pages
+- \`AggregateRating\` when you supply verified third-party rating data
+
+Every schema it generates passes Google's Rich Results Test out of the box — valid JSON-LD, correct property types, required fields present.
+    `.trim(),
+  },
+  {
+    slug: 'how-chatgpt-decides-what-to-recommend',
+    title: 'How ChatGPT decides which websites to recommend — and how to be one of them',
+    description: 'When ChatGPT recommends a website or cites a source, it is not random. Here is what drives those recommendations and what website owners can do to influence them.',
+    date: '2026-05-19',
+    readTime: '7 min read',
+    tags: ['AI Search', 'ChatGPT', 'AEO'],
+    content: `
+## ChatGPT is now a traffic source
+
+For years, website traffic came from three places: organic search, social media, and direct/email. In 2025 and 2026, a fourth channel has become meaningful: **AI assistants**.
+
+ChatGPT, Perplexity, Claude, and Microsoft Copilot are now used by millions of people to research products, find services, answer questions, and compare options. When these systems recommend your website — or cite it as a source — they send real traffic with high intent.
+
+Understanding how to appear in those recommendations is the next frontier of digital marketing.
+
+## How ChatGPT sources its answers
+
+ChatGPT operates in two modes:
+
+**Training data mode** — the model answers from knowledge baked in during training. This knowledge has a cutoff date and does not include your latest content.
+
+**Browse mode (web search)** — ChatGPT retrieves live web pages to answer the query. This is what matters for website owners. When a user asks ChatGPT a question that requires current information, ChatGPT fetches relevant pages and synthesises its answer from them.
+
+The browse mode uses **GPTBot** — OpenAI's web crawler — to index pages, and a search layer to retrieve relevant content at query time.
+
+## What signals GPTBot and ChatGPT look for
+
+**Clear entity identification.** ChatGPT needs to know who you are before it can confidently recommend you. A complete \`Organization\` or \`LocalBusiness\` Schema.org block — with your business name, URL, description, phone, address, and \`sameAs\` links to your social profiles — tells ChatGPT's crawlers that this is a real, identifiable entity, not an anonymous page.
+
+**Explicit topic coverage.** ChatGPT searches for pages that directly address the user's query. A page titled "Hotel Schema.org setup guide for Joomla" signals relevance for queries about Hotel structured data in Joomla far more clearly than a generic "Joomla SEO tips" page.
+
+**Structured Q&A content.** When a user asks a question, ChatGPT prefers sources that contain an explicit answer to that question — not just related content. \`FAQPage\` Schema, clear heading structures, and direct question-answer paragraphs all make it easier for AI systems to extract and present your content.
+
+**Freshness and update signals.** ChatGPT's browse mode prefers fresh content. Your \`dateModified\` in Article Schema, your IndexNow submissions, and your XML sitemap's \`lastmod\` values all signal recency. Outdated pages with stale information are less likely to be cited.
+
+**Crawlability.** If your \`robots.txt\` blocks GPTBot, ChatGPT's crawler cannot index your pages. Check that \`User-agent: GPTBot\` is followed by \`Allow: /\`, not \`Disallow: /\`.
+
+## The llms.txt advantage
+
+When GPTBot crawls your site, it starts by reading \`llms.txt\` if it exists. This file is a structured, machine-readable summary of your site — who you are, what you cover, and where your most important content lives.
+
+Think of it as a curated introduction that you give to AI crawlers instead of forcing them to figure it out by crawling every page. A well-written \`llms.txt\` ensures that ChatGPT understands your site's expertise before it even reads a single article.
+
+Without \`llms.txt\`, an AI crawler arrives cold. It may misidentify your primary focus, miss your best content in deep URLs, or associate your site with tangential topics it encountered first.
+
+## Content strategies that get cited
+
+**Answer questions explicitly.** The most-cited pages in AI systems are those that provide clear, direct answers. Structure your content with question headings and immediate answers, not pages that bury the answer in four paragraphs of preamble.
+
+**Be specific and verifiable.** AI systems prefer concrete, specific claims over vague generalities. "Our hotel has 47 rooms and a 4.6/5 rating on Booking.com from 2,341 guests" is citable. "Our hotel offers a great stay" is not.
+
+**Cover your topic completely.** Thin pages with 200 words of content are rarely cited. Comprehensive resources that address the topic from multiple angles, include examples, and anticipate follow-up questions perform significantly better.
+
+**Use Schema.org for everything factual.** Every factual claim — your business name, your address, your opening hours, your rating — should be in structured data as well as in the page content. Schema provides machine-readable verification for what your text asserts.
+
+## What AI Boost for Joomla does for AI citation readiness
+
+**AI Boost for Joomla** addresses every signal that GPTBot and other AI crawlers look for:
+
+- **robots.txt** — explicitly allows GPTBot, ClaudeBot, PerplexityBot, and 22 other AI crawlers
+- **Schema.org** — generates \`Organization\`, \`LocalBusiness\`, \`Article\`, and \`FAQPage\` JSON-LD automatically
+- **llms.txt** — generates a dynamic \`llms.txt\` from your Joomla configuration and sitemap
+- **IndexNow** — submits pages to search engines on publication for faster AI indexer discovery
+- **Sitemap** — generates a complete XML sitemap with accurate \`lastmod\` timestamps
+
+The combination of these signals makes your Joomla site one that AI assistants can confidently identify, index, and recommend.
+    `.trim(),
+  },
+  {
+    slug: 'schema-org-for-restaurants',
+    title: 'Schema.org for Restaurants — a complete setup guide for Joomla',
+    description: 'A step-by-step guide to implementing Restaurant Schema.org on a Joomla site — covering the right types, required fields, menu markup, and how to validate your output.',
+    date: '2026-05-21',
+    readTime: '7 min read',
+    tags: ['Schema.org', 'Restaurant', 'Joomla'],
+    content: `
+## Why Restaurant structured data matters
+
+When someone searches for "Italian restaurant near me" or asks ChatGPT "what's a good restaurant in Belgrade?", the AI systems and search engines that respond need structured, machine-readable information to answer confidently.
+
+A restaurant website without Schema.org structured data is invisible to this layer of the web. The AI cannot verify your cuisine type, your opening hours, your location, your price range, or your rating — so it either does not recommend you, or cites less reliable sources (review platforms, directory listings) instead.
+
+Restaurant Schema.org is also one of the most impactful structured data implementations for traditional SEO: it enables the rich Knowledge Panel in Google Search, the opening hours display, the price range indicator, and the review stars.
+
+## The correct Schema.org type for restaurants
+
+Use \`Restaurant\` — which extends \`FoodEstablishment\`, which extends \`LocalBusiness\`. You do not need to declare all three; declaring \`Restaurant\` is sufficient because Schema.org types are hierarchical.
+
+\`\`\`json
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Acme Bistro",
+  "url": "https://acme-bistro.com",
+  "telephone": "+381 11 123 4567",
+  "servesCuisine": "Italian",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Knez Mihailova 10",
+    "addressLocality": "Belgrade",
+    "addressCountry": "RS",
+    "postalCode": "11000"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 44.8178,
+    "longitude": 20.4569
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+      "opens": "12:00",
+      "closes": "23:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Friday", "Saturday"],
+      "opens": "12:00",
+      "closes": "00:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Sunday",
+      "opens": "13:00",
+      "closes": "22:00"
+    }
+  ]
+}
+\`\`\`
+
+## Required and recommended fields
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| \`name\` | Yes | Restaurant name |
+| \`address\` | Yes | Full postal address |
+| \`telephone\` | Recommended | International format |
+| \`url\` | Recommended | Your website URL |
+| \`servesCuisine\` | Recommended | Cuisine type (e.g., "Italian", "Serbian") |
+| \`priceRange\` | Recommended | $ to $$$$ |
+| \`openingHoursSpecification\` | Recommended | Day-by-day hours |
+| \`geo\` | Recommended | GPS coordinates |
+| \`image\` | Recommended | Photo of the restaurant |
+| \`aggregateRating\` | Optional | Star rating with review count |
+| \`menu\` | Optional | URL of the menu page |
+| \`acceptsReservations\` | Optional | Boolean |
+| \`hasMap\` | Optional | Google Maps URL |
+
+## Adding aggregate ratings
+
+If your restaurant has verified reviews on TripAdvisor, Google, or another platform, include \`aggregateRating\`:
+
+\`\`\`json
+"aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": "4.7",
+  "reviewCount": "892",
+  "bestRating": "5",
+  "worstRating": "1"
+}
+\`\`\`
+
+**Important:** Only use real, verifiable ratings. Google's policies prohibit self-authored ratings or fabricated review counts. Violations can result in rich result ineligibility.
+
+## Menu markup
+
+If you have a digital menu on your site, link to it in the schema:
+
+\`\`\`json
+"menu": "https://acme-bistro.com/menu",
+"hasMenu": {
+  "@type": "Menu",
+  "name": "Main Menu",
+  "url": "https://acme-bistro.com/menu"
+}
+\`\`\`
+
+For full menu item markup (individual dishes with descriptions and prices), use \`MenuSection\` and \`MenuItem\` types. This is advanced but can produce rich results for specific dish queries.
+
+## The social and meta layer
+
+Beyond Schema.org, restaurant sites benefit from complete OpenGraph and Twitter Card implementation. When anyone shares your website on Facebook, Instagram Stories, or X, the preview card should show your best photo, your restaurant name, and a compelling description — not a random thumbnail and truncated URL.
+
+Recommended OG image: a high-quality food or interior photo at 1200×630 pixels.
+
+## Implementing on Joomla
+
+Implementing Restaurant Schema.org manually on a Joomla site requires editing templates, writing PHP, or managing custom modules. For most restaurant owners, that is not realistic.
+
+**AI Boost for Joomla** provides a Restaurant preset that configures the correct Schema.org type and all recommended fields through a user-friendly admin interface. You fill in your restaurant name, address, phone, cuisine type, price range, and opening hours through a form — the plugin generates and injects the correct JSON-LD automatically.
+
+The Business Hours widget in AI Boost provides a 7-row weekly table (Mon–Sun) for setting opening hours, with support for individual day configuration, closed day marking, and automatic \`openingHoursSpecification\` generation.
+
+After saving, visit your homepage, view source, find the \`application/ld+json\` block, and validate it at [Google's Rich Results Test](https://search.google.com/test/rich-results). A correctly configured restaurant schema passes the test and qualifies for the Local Business rich result panel.
+    `.trim(),
+  },
 ]
 
 export function getBlogPost(slug: string): BlogPost | undefined {

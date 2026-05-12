@@ -4,6 +4,7 @@ import { BlogListPage } from './components/BlogListPage'
 import { BlogPostPage } from './components/BlogPostPage'
 import { FaqPage } from './components/FaqPage'
 import { DocsPage } from './components/DocsPage'
+import { DocDetailPage } from './components/DocDetailPage'
 import { PricingPage } from './components/PricingPage'
 import { FeaturesPage } from './components/FeaturesPage'
 
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/docs" element={<DocsPage />} />
+        <Route path="/docs/:section" element={<DocDetailPage />} />
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="*" element={<LandingPage />} />
       </Routes>
